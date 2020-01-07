@@ -7,5 +7,8 @@ peihuaH -- 2020-01-04 16:25
 peihuaH -- 2020-01-05 21:26
 - added design doc and api cards
 
-phuangH -- 2020-01-06 22:20
+peihuaH -- 2020-01-06 22:20
 - updated design doc to reflect suggestions given by the other teams
+
+hilaryZ -- 2020-01-07 00:28
+- added login system from previous project

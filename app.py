@@ -55,6 +55,20 @@ def home():
     else:
         return redirect(url_for('login'))
 
+@app.route('/create')
+def create():
+    if 'user' in session:
+        return render_template('create.html')
+    else:
+        return redirect(url_for('login'))
+
+@app.route('/play')
+def play():
+    if 'user' in session:
+        return render_template('play.html')
+    else:
+        return redirect(url_for('login'))
+
 if __name__ == "__main__":
     create_db.create()
     app.debug = True

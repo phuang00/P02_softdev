@@ -5,7 +5,7 @@ from flask import session
 from flask import redirect
 from flask import flash
 from flask import url_for
-import db_functions
+from utl import db_functions, create_db
 import sqlite3  # enable control of an sqlite database
 import os
 
@@ -56,5 +56,6 @@ def home():
         return redirect(url_for('login'))
 
 if __name__ == "__main__":
+    create_db.create()
     app.debug = True
     app.run()

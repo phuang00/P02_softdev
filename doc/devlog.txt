@@ -13,5 +13,12 @@ peihuaH -- 2020-01-06 22:20
 hilaryZ -- 2020-01-07 00:28
 - added login system from previous project
 
-jacobO -- 2020-01-07 9:25
+jacobO -- 2020-01-07 09:25
 - created all of the necessary tables
+
+peihuaH -- 2020-01-07 10:15
+- removed duplicate python files
+- added navbar to base template
+- added bootstrap link
+- have all templates extend base template
+- fixed python styling

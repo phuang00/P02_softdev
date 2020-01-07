@@ -1,9 +1,9 @@
 import sqlite3  # enable control of an sqlite database
 
+DB_FILE = "jeopardy.db"
 # checkfor_credentials()
 # - @return username and password of accounts that meet the credentials in the password (either an empty touple or 1-sized touple)
 def checkfor_credentials(username, password):
-    DB_FILE = "jeopardy.db"
     db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
     c = db.cursor()  # facilitate db ops
 
@@ -16,7 +16,6 @@ def checkfor_credentials(username, password):
 
 
 def checkfor_username(username):
-    DB_FILE = "jeopardy.db"
     db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
     c = db.cursor()  # facilitate db ops
 
@@ -29,7 +28,6 @@ def checkfor_username(username):
 
 
 def create_user(username, password):
-    DB_FILE = "jeopardy.db"
     db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
     c = db.cursor()  # facilitate db ops
 
@@ -41,7 +39,6 @@ def create_user(username, password):
     return response
 
 def get_user_id(username):
-    DB_FILE = "jeopardy.db"
     db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
     c = db.cursor()  # facilitate db ops
 

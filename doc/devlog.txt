@@ -12,3 +12,6 @@ peihuaH -- 2020-01-06 22:20
 
 hilaryZ -- 2020-01-07 00:28
 - added login system from previous project
+
+jacobO -- 2020-01-07 9:25
+- created all of the necessary tables

@@ -77,6 +77,12 @@ def play():
         return render_template('play.html')
     return redirect(url_for('login'))
 
+@app.route('/search')
+def search():
+    if 'user' in session:
+        return render_template('search.html', search = request.args.get('keyword'))
+    return redirect(url_for('login'))
+
 @app.route('/logout')
 def logout():
     session.pop('user', None)

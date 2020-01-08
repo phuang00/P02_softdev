@@ -29,7 +29,7 @@ def login():
             session['user'] = request.args.get('username')
             session['password'] = request.args.get('password')
             session['id'] = db_functions.get_user_id(request.args.get('username'))
-            return render_template('home.html')
+            return redirect(url_for('home'))
         flash('Invalid Credentials')
         return redirect(url_for('login'))
     return render_template('login.html')
@@ -50,7 +50,7 @@ def register():
 @app.route('/home')
 def home():
     if 'user' in session:
-        return render_template('home.html')
+        return render_template('home.html', user = session['user'])
     return redirect(url_for('login'))
 
 @app.route('/board')

@@ -9,6 +9,11 @@ peihuaH -- 2020-01-05 21:26
 
 peihuaH -- 2020-01-06 22:20
 - updated design doc to reflect suggestions given by the other teams
+  - made role description for backend more specific
+  - corrected the direction of the arrows on component map
+  - renamed the game database table from games in session to game status to avoid confusion
+  - added id column to questions db table and have board db table refer to that id to declutter the tables
+  - added category column to board db table to make it easier to get the questions based on category
 
 hilaryZ -- 2020-01-07 00:28
 - added login system from previous project

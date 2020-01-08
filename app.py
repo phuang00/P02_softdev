@@ -53,8 +53,20 @@ def home():
         return render_template('home.html')
     return redirect(url_for('login'))
 
+@app.route('/board')
+def board():
+    if 'user' in session:
+        return render_template('board.html')
+    return redirect(url_for('login'))
+
 @app.route('/create')
 def create():
+    if 'user' in session:
+        return render_template('create.html')
+    return redirect(url_for('login'))
+
+@app.route('/customize')
+def customize():
     if 'user' in session:
         return render_template('create.html')
     return redirect(url_for('login'))
@@ -64,6 +76,12 @@ def play():
     if 'user' in session:
         return render_template('play.html')
     return redirect(url_for('login'))
+
+@app.route('/logout')
+def logout():
+    session.pop('user', None)
+    flash("Logged Out Succesfully")
+    return redirect(url_for("index"))
 
 if __name__ == "__main__":
     create_db.create()

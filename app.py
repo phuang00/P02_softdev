@@ -74,7 +74,9 @@ def customize():
 @app.route('/play')
 def play():
     if request.args:
-        return render_template('play.html', board_name = request.args.get('board_name'))
+        category1 = request.args.get('category1')
+        db_functions.create_question(category1, request.args.get('q1'), request.args.get('a1'))
+        return render_template('play.html', board_name = request.args.get('board_name'), q1 = request.args.get('c1q1'))
     return redirect(url_for('login'))
 
 @app.route('/search')

@@ -63,21 +63,8 @@ def board():
         return render_template('board.html')
     return redirect(url_for('login'))
 
-@app.route('/create')
+@app.route('/create', methods=['POST'])
 def create():
-    if 'user' in session:
-        return render_template('create.html')
-    return redirect(url_for('login'))
-
-@app.route('/customize')
-def customize():
-    if 'user' in session:
-        return render_template('customize.html')
-    return redirect(url_for('login'))
-
-@app.route('/play', methods=['POST'])
-def play():
-
     if 'user' in session:
         if request.method =='POST':
             print(request.form);
@@ -130,14 +117,24 @@ def play():
                 # line to append answer to database
                 m = m - 1
 
-        return render_template('play.html', board_name = request.args.get('board_name'))
+        return render_template('create', board_name = request.args.get('board_name'))
+    return redirect(url_for('login'))
 
-    #if request.args:
-    #    category1 = request.args.get('category1')
-    #    db_functions.create_question(category1, request.args.get('q1'), request.args.get('a1'))
-    #    return render_template('play.html', board_name = request.args.get('board_name'), q1 = request.args.get('c1q1'))
+@app.route('/customize')
+def customize():
+    if 'user' in session:
+        return render_template('customize.html')
+    return redirect(url_for('login'))
 
-    #return redirect(url_for('login'))
+@app.route('/play')
+def play():
+
+    if 'user' in session:
+        if request.args:
+            category1 = request.args.get('category1')
+            db_functions.create_question(category1, request.args.get('q1'), request.args.get('a1'))
+            return render_template('play.html', board_name = request.args.get('board_name'), q1 = request.args.get('c1q1'))
+    return redirect(url_for('login'))
 
 @app.route('/search')
 def search():

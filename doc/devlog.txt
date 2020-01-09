@@ -37,3 +37,8 @@ aliceN -- 2020-01-08 22:03
 - added code for Countries, Open Trivia, and Rick & Morty API
 - it currently takes 25 random questions/answers from countries and open trivia, and 19 questions/answers from Rick & Morty
 - sorry Hilary there was a merge conflict so I commented out your code
+
+peihuaH -- 2020-01-08 23:20
+- worked on customize.html to display all the text boxes for user to create their own jeopardy board
+- added the post method for the form used on customize.html so that length would not be an issue
+- updated /play route in app.py to accept post method

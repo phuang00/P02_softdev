@@ -7,41 +7,103 @@ Customize Your Board...
 {% block body %}
 <h1>Customize Your Board</h1>
 
-<form method="GET" action="/play">
+<form class="text-center" method="POST" action="/play">
   <label>Board Name</label>
   <input type="text" name="board_name"> <br> <br>
-  <label>Category 1</label>
-  <input type="text" name="category1"> <br> <br>
-  <label>Question 1</label><br>
-  <textarea rows="2" cols="30" name="q1"></textarea> <br><br>
-  <label>Answer 1</label><br>
-  <textarea rows="2" cols="30" name="a1"></textarea> <br><br>
-  <label>Question 2</label><br>
-  <textarea rows="2" cols="30" name="q2"></textarea> <br><br>
-  <label>Answer 2</label><br>
-  <textarea rows="2" cols="30" name="a2"></textarea> <br><br>
-  <label>Question 3</label><br>
-  <textarea rows="2" cols="30" name="q3"></textarea> <br><br>
-  <label>Answer 3</label><br>
-  <textarea rows="2" cols="30" name="a3"></textarea> <br><br>
-  <label>Question 4</label><br>
-  <textarea rows="2" cols="30" name="q4"></textarea> <br><br>
-  <label>Answer 4</label><br>
-  <textarea rows="2" cols="30" name="a4"></textarea> <br><br>
-  <label>Question 5</label><br>
-  <textarea rows="2" cols="30" name="q5"></textarea> <br><br>
-  <label>Answer 5</label><br>
-  <textarea rows="2" cols="30" name="a5"></textarea> <br><br>
-
-  <label>Category 2</label>
-  <input type="text" name="category2"> <br> <br>
-  <label>Category 3</label>
-  <input type="text" name="category3"> <br> <br>
-  <label>Category 4</label>
-  <input type="text" name="category4"> <br> <br>
-  <label>Category 5</label>
-  <input type="text" name="category5"> <br> <br>
-
+  <div class="form-row">
+    <div class="col">
+      <label>Category 1</label>
+      <input type="text" name="c1"> <br> <br>
+      <label>100</label><br>
+      <textarea rows="2" placeholder="statement" name="c1_a1"></textarea>
+      <textarea rows="2" placeholder="question" name="c1_q1"></textarea> <br><br>
+      <label>200</label><br>
+      <textarea rows="2" placeholder="statement" name="c1_a2"></textarea>
+      <textarea rows="2" placeholder="question" name="c1_q2"></textarea> <br><br>
+      <label>300</label><br>
+      <textarea rows="2" placeholder="statement" name="c1_a3"></textarea>
+      <textarea rows="2" placeholder="question" name="c1_q3"></textarea> <br><br>
+      <label>400</label><br>
+      <textarea rows="2" placeholder="statement" name="c1_a4"></textarea>
+      <textarea rows="2" placeholder="question" name="c1_q4"></textarea> <br><br>
+      <label>500</label><br>
+      <textarea rows="2" placeholder="statement" name="c1_a5"></textarea>
+      <textarea rows="2" placeholder="question" name="c1_q5"></textarea> <br><br>
+    </div>
+    <div class="col">
+      <label>Category 2</label>
+      <input type="text" name="c2"> <br> <br>
+      <label>100</label><br>
+      <textarea rows="2" placeholder="statement" name="c2_a1"></textarea>
+      <textarea rows="2" placeholder="question" name="c2_q1"></textarea> <br><br>
+      <label>200</label><br>
+      <textarea rows="2" placeholder="statement" name="c2_a2"></textarea>
+      <textarea rows="2" placeholder="question" name="c2_q2"></textarea> <br><br>
+      <label>300</label><br>
+      <textarea rows="2" placeholder="statement" name="c2_a3"></textarea>
+      <textarea rows="2" placeholder="question" name="c2_q3"></textarea> <br><br>
+      <label>400</label><br>
+      <textarea rows="2" placeholder="statement" name="c2_a4"></textarea>
+      <textarea rows="2" placeholder="question" name="c2_q4"></textarea> <br><br>
+      <label>500</label><br>
+      <textarea rows="2" placeholder="statement" name="c2_a5"></textarea>
+      <textarea rows="2" placeholder="question" name="c2_q5"></textarea> <br><br>
+    </div><div class="col">
+      <label>Category 3</label>
+      <input type="text" name="c3"> <br> <br>
+      <label>100</label><br>
+      <textarea rows="2" placeholder="statement" name="c3_a1"></textarea>
+      <textarea rows="2" placeholder="question" name="c3_q1"></textarea> <br><br>
+      <label>200</label><br>
+      <textarea rows="2" placeholder="statement" name="c3_a2"></textarea>
+      <textarea rows="2" placeholder="question" name="c3_q2"></textarea> <br><br>
+      <label>300</label><br>
+      <textarea rows="2" placeholder="statement" name="c3_a3"></textarea>
+      <textarea rows="2" placeholder="question" name="c3_q3"></textarea> <br><br>
+      <label>400</label><br>
+      <textarea rows="2" placeholder="statement" name="c3_a4"></textarea>
+      <textarea rows="2" placeholder="question" name="c3_q4"></textarea> <br><br>
+      <label>500</label><br>
+      <textarea rows="2" placeholder="statement" name="c3_a5"></textarea>
+      <textarea rows="2" placeholder="question" name="c3_q5"></textarea> <br><br>
+    </div><div class="col">
+      <label>Category 4</label>
+      <input type="text" name="c4"> <br> <br>
+      <label>100</label><br>
+      <textarea rows="2" placeholder="statement" name="c4_a1"></textarea>
+      <textarea rows="2" placeholder="question" name="c4_q1"></textarea> <br><br>
+      <label>200</label><br>
+      <textarea rows="2" placeholder="statement" name="c4_a2"></textarea>
+      <textarea rows="2" placeholder="question" name="c4_q2"></textarea> <br><br>
+      <label>300</label><br>
+      <textarea rows="2" placeholder="statement" name="c4_a3"></textarea>
+      <textarea rows="2" placeholder="question" name="c4_q3"></textarea> <br><br>
+      <label>400</label><br>
+      <textarea rows="2" placeholder="statement" name="c4_a4"></textarea>
+      <textarea rows="2" placeholder="question" name="c4_q4"></textarea> <br><br>
+      <label>500</label><br>
+      <textarea rows="2" placeholder="statement" name="c4_a5"></textarea>
+      <textarea rows="2" placeholder="question" name="c4_q5"></textarea> <br><br>
+    </div><div class="col">
+      <label>Category 5</label>
+      <input type="text" name="c5"> <br> <br>
+      <label>100</label><br>
+      <textarea rows="2" placeholder="statement" name="c5_a1"></textarea>
+      <textarea rows="2" placeholder="question" name="c5_q1"></textarea> <br><br>
+      <label>200</label><br>
+      <textarea rows="2" placeholder="statement" name="c5_a2"></textarea>
+      <textarea rows="2" placeholder="question" name="c5_q2"></textarea> <br><br>
+      <label>300</label><br>
+      <textarea rows="2" placeholder="statement" name="c5_a3"></textarea>
+      <textarea rows="2" placeholder="question" name="c5_q3"></textarea> <br><br>
+      <label>400</label><br>
+      <textarea rows="2" placeholder="statement" name="c5_a4"></textarea>
+      <textarea rows="2" placeholder="question" name="c5_q4"></textarea> <br><br>
+      <label>500</label><br>
+      <textarea rows="2" placeholder="statement" name="c5_a5"></textarea>
+      <textarea rows="2" placeholder="question" name="c5_q5"></textarea> <br><br>
+    </div>
+  </div>
   <input type="submit">
 </form>
 {% endblock %}

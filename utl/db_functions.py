@@ -79,3 +79,10 @@ def create_board(categoryList):
     db.commit()
     db.close()
     return response
+
+def add_flag_questions(flag_list):
+    i = 0
+    while i < len(flag_list):
+        create_question("geography",flag_list[i],flag_list[i+1])
+        i += 2
+        

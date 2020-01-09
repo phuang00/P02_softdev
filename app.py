@@ -68,13 +68,13 @@ def create():
 @app.route('/customize')
 def customize():
     if 'user' in session:
-        return render_template('create.html')
+        return render_template('customize.html')
     return redirect(url_for('login'))
 
 @app.route('/play')
 def play():
-    if 'user' in session:
-        return render_template('play.html')
+    if request.args:
+        return render_template('play.html', board_name = request.args.get('board_name'))
     return redirect(url_for('login'))
 
 @app.route('/search')

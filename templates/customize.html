@@ -6,4 +6,26 @@ Customize Your Board...
 
 {% block body %}
 <h1>Customize Your Board</h1>
+
+<form method="GET" action="/play">
+  <label>Board Name</label>
+  <input type="text" name="board_name"> <br> <br>
+  <label>Category 1</label>
+  <input type="text" name="category1"> <br> <br>
+  <label>Question 1</label><br>
+  <textarea rows="2" cols="30" name="c1q1"></textarea> <br><br>
+  <label>Answer 1</label><br>
+  <textarea rows="2" cols="30" name="c1a1"></textarea> <br><br>
+
+  <label>Category 2</label>
+  <input type="text" name="category2"> <br> <br>
+  <label>Category 3</label>
+  <input type="text" name="category3"> <br> <br>
+  <label>Category 4</label>
+  <input type="text" name="category4"> <br> <br>
+  <label>Category 5</label>
+  <input type="text" name="category5"> <br> <br>
+
+  <input type="submit">
+</form>
 {% endblock %}

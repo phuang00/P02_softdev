@@ -76,6 +76,7 @@ def customize():
 
 @app.route('/play')
 def play():
+
     if 'user' in session:
 
         # COUNTRIES API
@@ -118,16 +119,22 @@ def play():
         # OPEN TRIVIA API  ( requires a session token, they expire after six hours )
         trivia = urllib.request.urlopen("https://opentdb.com/api.php?amount=25")
         questions = [json.loads(trivia.read())]
-        m = 0;
-        while m <= 25:
-            question = questions[m]['results'][m]['question']
+        m = 25;
+        while m >= 0:
+            question = questions[0]['results'][m]['question']
             # line append question to database
-            answer = questions[m]['results'][m]['correct_answer']
+            answer = questions[0]['results'][m]['correct_answer']
             # line to append answer to database
-            m += 1
+            m = m - 1
             
         return render_template('play.html', board_name = request.args.get('board_name'))
-    return redirect(url_for('login'))
+
+    #if request.args:
+    #    category1 = request.args.get('category1')
+    #    db_functions.create_question(category1, request.args.get('q1'), request.args.get('a1'))
+    #    return render_template('play.html', board_name = request.args.get('board_name'), q1 = request.args.get('c1q1'))
+
+    #return redirect(url_for('login'))
 
 @app.route('/search')
 def search():

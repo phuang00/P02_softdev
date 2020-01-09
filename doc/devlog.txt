@@ -32,3 +32,8 @@ hilaryZ -- 2020-01-08 20:38
 - added database function to insert questions
 - worked on making a form for customized boards
 - writing the play function to add the user's questions to the database
+
+aliceN -- 2020-01-08 22:03
+- added code for Countries, Open Trivia, and Rick & Morty API
+- it currently takes 25 random questions/answers from countries and open trivia, and 19 questions/answers from Rick & Morty
+- sorry Hilary there was a merge conflict so I commented out your code

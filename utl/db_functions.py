@@ -69,3 +69,13 @@ def create_question(category, question, answer):
     db.close()  # close database
 
     return response
+
+def create_board(categoryList):
+    i = 0
+    while i < 5:
+        query = "INSERT INTO board_status(category, q1, q2 ,q3 ,q4 ,q5) VALUES(\"%s\", 1, 1, 1, 1, 1)" % (categoryList[0])
+        response = list(c.execute(query))
+        i += 1
+    db.commit()
+    db.close()
+    return response

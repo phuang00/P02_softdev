@@ -56,20 +56,25 @@ def get_highest_num(table, col):
     response = list(c.execute(query))
     db.commit()  # save changes
     db.close()  # close database
-    print(response)
     return response
 
 def create_question(category, question2, answer):
     db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
     c = db.cursor()  # facilitate db ops
     #print(NOT EXISTS (SELECT * FROM questions WHERE question = question2))
-    if (NOT EXISTS (SELECT * FROM questions WHERE question = question2)):
-        query = "INSERT INTO questions(category, question, answer) VALUES(\"%s\", \"%s\", \"%s\");" % (category, question2, answer)
-        response = list(c.execute(query))
-        db.commit()  # save changes
-        db.close()  # close database
+    #if (NOT EXISTS (SELECT * FROM questions WHERE question = question2)):
+    #    query = "INSERT INTO questions(category, question, answer) VALUES(\"%s\", \"%s\", \"%s\");" % (category, question2, answer)
+    #    response = list(c.execute(query))
+    #    db.commit()  # save changes
+    #    db.close()  # close database
 
-        return response
+    query = "INSERT INTO questions(category, question, answer) VALUES(\"%s\", \"%s\", \"%s\");" % (category, question, answer)
+    response = list(c.execute(query))
+    id = get_highest_num('questions', 'question_id')
+    db.commit()  # save changes
+    db.close()  # close database
+
+    return id
 
 def create_board(categoryList):
     i = 0
@@ -86,6 +91,7 @@ def add_flag_questions(flag_list):
     while i < len(flag_list):
         create_question("geography",flag_list[i],flag_list[i+1])
         i += 2
+<<<<<<< HEAD
 
 def add_RM_questions(character_list):
     i = 0
@@ -106,3 +112,5 @@ def add_general_questions(question_list):
         i += 2
 
 #create_question("GEN","hithere","hello")
+=======
+>>>>>>> c6e284ba23e68255f46e7db1ae30b4003607351e

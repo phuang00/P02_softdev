@@ -59,16 +59,17 @@ def get_highest_num(table, col):
     print(response)
     return response
 
-def create_question(category, question, answer):
+def create_question(category, question2, answer):
     db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
     c = db.cursor()  # facilitate db ops
+    #print(NOT EXISTS (SELECT * FROM questions WHERE question = question2))
+    if (NOT EXISTS (SELECT * FROM questions WHERE question = question2)):
+        query = "INSERT INTO questions(category, question, answer) VALUES(\"%s\", \"%s\", \"%s\");" % (category, question2, answer)
+        response = list(c.execute(query))
+        db.commit()  # save changes
+        db.close()  # close database
 
-    query = "INSERT INTO questions(category, question, answer) VALUES(\"%s\", \"%s\", \"%s\");" % (category, question, answer)
-    response = list(c.execute(query))
-    db.commit()  # save changes
-    db.close()  # close database
-
-    return response
+        return response
 
 def create_board(categoryList):
     i = 0
@@ -103,3 +104,5 @@ def add_general_questions(question_list):
     while i < len(question_list):
         create_question("General Knowledge",question_list[i],question_list[i+1])
         i += 2
+
+#create_question("GEN","hithere","hello")

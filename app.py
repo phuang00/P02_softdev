@@ -66,54 +66,6 @@ def board():
 @app.route('/create')
 def create():
     if 'user' in session:
-        # COUNTRIES API
-        pop = urllib.request.urlopen("https://restcountries.eu/rest/v2/")
-        data = [json.loads(pop.read())]
-        x = 25
-        h = 25
-        d = ""
-        # Random countries and flags
-        while x > 0:
-            y = random.randint(-1,249)
-            d = d + data[0][y]['name'] + " "
-            # line to append to database, gets random country
-            pics = data[0][y]['flag']
-            # line to append to database, gets corresponding flag
-            x = x - 1
-
-        # RICK AND MORTY API
-        rick = urllib.request.urlopen("https://rickandmortyapi.com/api/character")
-        morty = [json.loads(rick.read())]
-        n = 25
-        # Random character images and names
-        while n > 0:
-            p = random.randint(-1,19)
-            pic = morty[0]['results'][p]['image']
-            # line to append to database, gets random image
-            name = morty[0]['results'][0]['name']
-            # line to append to database, gets random name
-            n = n - 1
-
-        # POKE API (doesn't work idk whyyyyy)
-        #poke = urllib.request.urlopen("https://pokeapi.co/api/v2/pokemon/")
-        #mon = [json.loads(poke.read())]
-        #m = 25
-        #q = mon[0]['results'][0]['url']
-        #w = urllib.request.urlopen(q)
-        #monpics = [json.loads(v.read())]
-        #picz = monpics[0]['sprites']['front_default']
-
-        # OPEN TRIVIA API  ( requires a session token, they expire after six hours )
-        trivia = urllib.request.urlopen("https://opentdb.com/api.php?amount=25")
-        questions = [json.loads(trivia.read())]
-        m = 25;
-        while m >= 0:
-            question = questions[0]['results'][m]['question']
-            # line append question to database
-            answer = questions[0]['results'][m]['correct_answer']
-            # line to append answer to database
-            m = m - 1
-
         return render_template('create', board_name = request.args.get('board_name'))
     return redirect(url_for('login'))
 
@@ -122,17 +74,16 @@ def customize():
     if 'user' in session:
         if request.method =='POST':
             print(request.form)
+            category1 = request.form['c1']
+            db_functions.create_question(category1, request.form['c1_q1'], request.form['c1_a1'])
+            return redirect(url_for('home'))
         return render_template('customize.html')
     return redirect(url_for('login'))
 
 @app.route('/play')
 def play():
-
     if 'user' in session:
-        if request.args:
-            category1 = request.args.get('category1')
-            db_functions.create_question(category1, request.args.get('q1'), request.args.get('a1'))
-            return render_template('play.html', board_name = request.args.get('board_name'), q1 = request.args.get('c1q1'))
+        return render_template('play.html')
     return redirect(url_for('login'))
 
 @app.route('/search')

@@ -2,7 +2,7 @@ peihuaH -- 2020-01-03 21:20
 - added team flag
 
 peihuaH -- 2020-01-04 16:25
-- updated README
+- updated README with project name, team name, team roster, roles, and description
 
 peihuaH -- 2020-01-05 21:26
 - added design doc and api cards
@@ -28,6 +28,13 @@ peihuaH -- 2020-01-07 10:15
 - have all templates extend base template
 - fixed python styling
 
+peihuaH -- 2020-01-08 8:50
+- added requirement.txt
+
+peihuaH -- 2020-01-08 15:30
+- updated README with launch instructions and api card links
+- remove navbar from login and register
+
 hilaryZ -- 2020-01-08 20:38
 - added database function to insert questions
 - worked on making a form for customized boards
@@ -42,6 +49,11 @@ peihuaH -- 2020-01-08 23:20
 - worked on customize.html to display all the text boxes for user to create their own jeopardy board
 - added the post method for the form used on customize.html so that length would not be an issue
 - updated /play route in app.py to accept post method
+
+peihuaH -- 2020-01-09 09:24
+- moved code for getting data from apis to /customize to declutter /play
+- made navbar dark
+- remove unused import in create_db.py
 
 aliceN -- 2020-01-09 22:02
 - added a working poke api! now all the api's will generate 25 random questions when calls to the functions are made

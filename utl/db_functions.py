@@ -85,4 +85,9 @@ def add_flag_questions(flag_list):
     while i < len(flag_list):
         create_question("geography",flag_list[i],flag_list[i+1])
         i += 2
-        
+
+def add_RM_questions(character_list):
+    i = 0
+    while i < len(character_list):
+        create_question("Rick and Morty",character_list[i],character_list[i+1])
+        i += 2

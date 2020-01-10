@@ -66,7 +66,7 @@ def board():
 @app.route('/create')
 def create():
     if 'user' in session:
-        return render_template('create', board_name = request.args.get('board_name'))
+        return render_template('create.html', board_name = request.args.get('board_name'))
     return redirect(url_for('login'))
 
 @app.route('/customize', methods=['GET', 'POST'])

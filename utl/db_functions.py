@@ -91,3 +91,9 @@ def add_RM_questions(character_list):
     while i < len(character_list):
         create_question("Rick and Morty",character_list[i],character_list[i+1])
         i += 2
+
+def add_pokemon_questions(pokemon_list):
+    i = 0
+    while i < len(pokemon_list):
+        create_question("Pokemon",pokemon_list[i],pokemon_list[i+1])
+        i += 2

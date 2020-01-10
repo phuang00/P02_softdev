@@ -97,3 +97,9 @@ def add_pokemon_questions(pokemon_list):
     while i < len(pokemon_list):
         create_question("Pokemon",pokemon_list[i],pokemon_list[i+1])
         i += 2
+
+def add_general_questions(question_list):
+    i = 0
+    while i < len(question_list):
+        create_question("General Knowledge",question_list[i],question_list[i+1])
+        i += 2

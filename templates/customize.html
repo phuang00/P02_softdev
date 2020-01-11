@@ -5,10 +5,11 @@ Customize Your Board...
 {% endblock %}
 
 {% block body %}
-<h1>Customize Your Board</h1>
+<br>
+<center><h1>Customize Your Board</h1></center>
 
 <form class="text-center" method="POST" action="/customize">
-  <label>Board Name</label>
+  <label placeholder="enter board name">Board Name</label>
   <input type="text" name="board_name" required> <br> <br>
   <div class="form-row">
     <div class="col">

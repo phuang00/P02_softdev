@@ -9,32 +9,32 @@
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
     <title>{% block title %}{% endblock %}</title>
   </head>
-<div class="container py-3 my-3 border rounded" id="font">
-  {% with messages = get_flashed_messages() %}
-  {% if messages %}
-  <ul class=flashes>
-    {% for message in messages %}
-    <div class="alert alert-success">{{ message }}</div>
-    {% endfor %}
+  <div class="container py-3 my-3 border rounded" id="font">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+      {% for message in messages %}
+      <div class="alert alert-warning">{{ message }}</div>
+      {% endfor %}
   </ul>
   {% endif %}
   {% endwith %}
   <body>
     {% block header %}
-    <div class="navbarhead" id="font">
-        <nav class="navbar navbar-expand-lg text-white bg-dark">
-          <a class="navbar-brand">Saturated Sidewalks</a>
-          <a class="nav-link" href="/home">Home</a>
-          <a class="nav-link" href="/board">Create Board</a>
-          <a class="nav-link" href="/play">Play!</a>
-          <ul class="nav navbar-nav ml-auto">
-            <li>
-              <form class="form-inline" action="/search" method="GET">
+    <div class="navbarhead" id="navdiv">
+      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f9ff33 ;">
+           <a class="navbar-brand">Saturated Sidewalks</a>
+           <a class="nav-link" href="/home">Home</a>
+           <a class="nav-link" href="/board">Create Board</a>
+           <a class="nav-link" href="/play">Play!</a>
+           <ul class="nav navbar-nav ml-auto">
+             <li>
+               <form class="form-inline" action="/search" method="GET">
               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword">
-              <button type="submit" class="btn btn-outline-success">Search</button>
+              <button type="submit" class="btn btn-success">Search</button>
               </form>
             </li>
-            <li>
+             <li>
               <form action="/logout" method="GET">
 		<button type="submit" class="btn btn-link navbar-btn navbar-link">Logout</button>
               </form>

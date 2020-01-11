@@ -74,9 +74,11 @@ def customize():
     if 'user' in session:
         if request.method =='POST':
             #print(request.form)
+            question_ids = []
             category1 = request.form['c1']
             q_num = db_functions.create_question(category1, request.form['c1_q1'], request.form['c1_a1'])
             print(q_num[0][0])
+            question_ids.append(q_num)
             return redirect(url_for('home'))
         return render_template('customize.html')
     return redirect(url_for('login'))

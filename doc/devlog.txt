@@ -62,3 +62,8 @@ aliceN -- 2020-01-09 22:02
 - to do for js: put all the js functions into a separate js file
 - to do for bootstrap: format the other pages, create a landing page (?)
 - changed all the font to Comic Sans hahaha
+
+hilaryZ -- 2020-01-10 09:27
+- fixed customize so that the user's questions are added to the questions table in the database
+- id of the question is returned and added to array
+- will work on adding all 25 questions and creating board

@@ -54,7 +54,7 @@ def register():
 @app.route('/home')
 def home():
     if 'user' in session:
-        return render_template('home.html', user = session['user'])
+        return render_template('home.html', user = session['user'], games=db_functions.get_games(session['user']))
     return redirect(url_for('login'))
 
 @app.route('/board')
@@ -92,7 +92,12 @@ def play():
 @app.route('/search')
 def search():
     if 'user' in session:
-        return render_template('search.html', search = request.args.get('keyword'))
+        result = []
+        if 'keyword' in request.args:
+            keyword = request.args['keyword']
+            result = db_functions.search_board(keyword)
+            return render_template('search.html', results=result, search=keyword)
+        return render_template('search.html', results=result, search="")
     return redirect(url_for('login'))
 
 @app.route('/logout')

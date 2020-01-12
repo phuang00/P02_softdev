@@ -6,4 +6,9 @@ Search
 
 {% block body %}
 <h1>Searches for: {{ search }}</h1>
+<ul>
+  {% for row in results %}
+  <li>{{row}}</li>
+  {% endfor %}
+</ul>
 {% endblock %}

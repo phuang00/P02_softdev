@@ -10,5 +10,10 @@ Homepage
   <h1>Welcome {{ user }} to JEOPARDY!</h1>
 
   <h6>User History</h6>
+  <ul>
+    {% for item in games %}
+    <li>{{item}}</li>
+    {% endfor %}
+  </ul>
 </div>
 {% endblock %}

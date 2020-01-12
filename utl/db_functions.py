@@ -111,3 +111,21 @@ def add_general_questions(question_list):
         i += 2
 
 #create_question("GEN","hithere","hello")
+
+def get_games(username):
+    history = []
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    c.execute("SELECT board_name FROM board, users WHERE username = ? AND board.user_id == users.user_id;", (username,))
+    for row in c.fetchall():
+        history.append(row[0])
+    return history
+
+def search_board(name):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    c.execute("SELECT board_name FROM board WHERE board_name LIKE '%' || ? || '%';", (name,))
+    data = []
+    for row in c.fetchall():
+        data.append(row[0])
+    return data

@@ -67,3 +67,9 @@ hilaryZ -- 2020-01-10 09:27
 - fixed customize so that the user's questions are added to the questions table in the database
 - id of the question is returned and added to array
 - will work on adding all 25 questions and creating board
+
+peihuaH -- 2020-01-12 02:17
+- added board_name column to board table in database
+- wrote database functions to get the games the user created and to get search results
+- updated app.py and templates for home to display user's game history and
+  for search page to display all the search results

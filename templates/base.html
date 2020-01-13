@@ -23,8 +23,8 @@
 {% endwith %}
 <body>
   {% block header %}
-  <nav style="position: sticky; top: 0; z-index: 1; background-color: #f9ff33;">
-    <nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-dark">
       <a class="navbar-brand">Saturated Sidewalks</a>
       <a class="nav-link" href="/home"><button style="justify-self: center;"class="col btn btn-outline-primary">Home</button></a>
       <a class="nav-link" href="/board"><button style="justify-self: center;"class="col btn btn-outline-primary">Create Board</button></a>
@@ -43,9 +43,11 @@
 	</li>
       </ul>
     </nav>
-  </nav>
+  </div>
   {% endblock %}
   {% block body %}
+  <p id="pic"></p>
+    
   {% endblock %}
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

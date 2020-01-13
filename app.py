@@ -75,10 +75,15 @@ def customize():
         if request.method =='POST':
             #print(request.form)
             question_ids = []
-            category1 = request.form['c1']
-            q_num = db_functions.create_question(category1, request.form['c1_q1'], request.form['c1_a1'])
-            print(q_num[0][0])
-            question_ids.append(q_num)
+            categories = []
+            for i in range(1, 6):
+                cat = "c" + str(i)
+                categories.append(request.form[cat])
+                for j in range(1, 6):
+                    question_ids.append(db_functions.create_question(request.form[cat], request.form[cat + "_q" + str(j)], request.form[cat + "_a" + str(j)]))
+            print(categories)
+            print(question_ids)
+            db_functions.create_board(session['id'], request.form['board_name'], categories, question_ids)
             return redirect(url_for('home'))
         return render_template('customize.html')
     return redirect(url_for('login'))

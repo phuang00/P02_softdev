@@ -53,12 +53,13 @@ def get_highest_num(table, col):
     db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
     c = db.cursor()  # facilitate db ops
     query = "SELECT MAX(%s) FROM %s;" % (col, table)
-    response = list(c.execute(query))
+    c.execute(query)
+    response = c.fetchone()[0]
     db.commit()  # save changes
     db.close()  # close database
     return response
 
-def create_question(category, question2, answer):
+def create_question(category, question, answer):
     db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
     c = db.cursor()  # facilitate db ops
     #print(NOT EXISTS (SELECT * FROM questions WHERE question = question2))
@@ -76,15 +77,28 @@ def create_question(category, question2, answer):
 
     return id
 
-def create_board(categoryList):
+def create_game(board_id, categoryList):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
     i = 0
     while i < 5:
-        query = "INSERT INTO board_status(category, q1, q2 ,q3 ,q4 ,q5) VALUES(\"%s\", 1, 1, 1, 1, 1)" % (categoryList[0])
+        query = "INSERT INTO board_status(board_id, category, q1, q2 ,q3 ,q4 ,q5) VALUES(\"%s\", 1, 1, 1, 1, 1)" % (categoryList[i])
         response = list(c.execute(query))
         i += 1
     db.commit()
     db.close()
     return response
+
+def create_board(user_id, board_name, categories, question_ids):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    for i in range(0, 5):
+        c.execute("INSERT INTO board(user_id, board_name, category, q1, q2, q3, q4, q5) VALUES(?, ?, ?, ?, ?, ?, ?, ?)",
+                  (user_id, board_name, categories[i], question_ids[i * 5],
+                   question_ids[i * 5 + 1], question_ids[i * 5 + 2],
+                   question_ids[i * 5 + 3], question_ids[i * 5 + 4]))
+    db.commit()
+    db.close()
 
 def add_flag_questions(flag_list):
     i = 0
@@ -128,4 +142,6 @@ def search_board(name):
     data = []
     for row in c.fetchall():
         data.append(row[0])
+    db.commit()
+    db.close()
     return data

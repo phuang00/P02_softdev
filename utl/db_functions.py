@@ -43,7 +43,8 @@ def get_user_id(username):
     c = db.cursor()  # facilitate db ops
 
     query = "SELECT user_id FROM users WHERE username == \"%s\";" % (username)
-    response = list(c.execute(query))
+    c.execute(query)
+    response = c.fetchone()[0]
     db.commit()  # save changes
     db.close()  # close database
     return response
@@ -71,10 +72,9 @@ def create_question(category, question, answer):
 
     query = "INSERT INTO questions(category, question, answer) VALUES(\"%s\", \"%s\", \"%s\");" % (category, question, answer)
     response = list(c.execute(query))
-    id = get_highest_num('questions', 'question_id')
     db.commit()  # save changes
     db.close()  # close database
-
+    id = get_highest_num('questions', 'question_id')
     return id
 
 def create_game(board_id, categoryList):
@@ -92,11 +92,12 @@ def create_game(board_id, categoryList):
 def create_board(user_id, board_name, categories, question_ids):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    for i in range(0, 5):
-        c.execute("INSERT INTO board(user_id, board_name, category, q1, q2, q3, q4, q5) VALUES(?, ?, ?, ?, ?, ?, ?, ?)",
-                  (user_id, board_name, categories[i], question_ids[i * 5],
-                   question_ids[i * 5 + 1], question_ids[i * 5 + 2],
-                   question_ids[i * 5 + 3], question_ids[i * 5 + 4]))
+    i = 0
+    while i < 5:
+        c.execute("INSERT INTO board(user_id, board_name, category, q1, q2, q3, q4, q5) VALUES(?, ?, ?, ?, ?, ?, ?, ?);",
+                  (int(user_id), board_name, categories[i], int(question_ids[i * 5]), int(question_ids[i * 5 + 1]),
+                  int(question_ids[(i * 5 + 2)]), int(question_ids[i * 5 + 3]), int(question_ids[i * 5 + 4],)))
+        i = i + 1
     db.commit()
     db.close()
 
@@ -130,7 +131,7 @@ def get_games(username):
     history = []
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("SELECT board_name FROM board, users WHERE username = ? AND board.user_id == users.user_id;", (username,))
+    c.execute("SELECT DISTINCT board_name FROM board, users WHERE username = ? AND board.user_id == users.user_id;", (username,))
     for row in c.fetchall():
         history.append(row[0])
     return history
@@ -138,7 +139,7 @@ def get_games(username):
 def search_board(name):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("SELECT board_name FROM board WHERE board_name LIKE '%' || ? || '%';", (name,))
+    c.execute("SELECT DISTINCT board_name FROM board WHERE board_name LIKE '%' || ? || '%';", (name,))
     data = []
     for row in c.fetchall():
         data.append(row[0])

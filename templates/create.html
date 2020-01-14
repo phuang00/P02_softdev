@@ -3,3 +3,42 @@
 {% block title %}
 Creating Board...
 {% endblock %}
+
+{% block body %}
+<center><h1>Generate a Board</h1></center>
+<form method="GET" action="/create">
+  <label placeholder="enter board name">Board Name</label>
+  <input type="text" name="board_name" required> <br> <br>
+  <label>Category 1</label>
+  <select name="c1">
+    <option value="pokemon">Pokemon</option>
+    <option value="countries">Countries</option>
+    <option value="rick-morty">Rick & Morty</option>
+  </select>
+  <label>Category 2</label>
+  <select name="c2">
+    <option value="pokemon">Pokemon</option>
+    <option value="countries">Countries</option>
+    <option value="rick-morty">Rick & Morty</option>
+  </select>
+  <label>Category 3</label>
+  <select name="c3">
+    <option value="pokemon">Pokemon</option>
+    <option value="countries">Countries</option>
+    <option value="rick-morty">Rick & Morty</option>
+  </select>
+  <label>Category 4</label>
+  <select name="c4">
+    <option value="pokemon">Pokemon</option>
+    <option value="countries">Countries</option>
+    <option value="rick-morty">Rick & Morty</option>
+  </select>
+  <label>Category 5</label>
+  <select name="c5">
+    <option value="pokemon">Pokemon</option>
+    <option value="countries">Countries</option>
+    <option value="rick-morty">Rick & Morty</option>
+  </select>
+  <button type="submit" name = "submit">Submit</button>
+</form>
+{% endblock %}

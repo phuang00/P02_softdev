@@ -66,12 +66,15 @@ def board():
 @app.route('/create')
 def create():
     if 'user' in session:
-        category1 = request.args.get('c1')
-        if c1 == 'pokemon':
-            for x in range(5):
+        if request.args:
+            c1 = request.args.get('c1')
+            if c1 == 'pokemon':
                 question_ids = []
-                question_ids.append(random.randrange(1, 25, 1))
-        return render_template('create.html', board_name = request.args.get('board_name'))
+                for x in range(5):
+                    question_ids.append(random.randrange(1, 25, 1))
+                print(question_ids)
+            return redirect(url_for('home'))
+        return render_template('create.html')
     return redirect(url_for('login'))
 
 @app.route('/customize', methods=['GET', 'POST'])

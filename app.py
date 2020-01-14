@@ -118,5 +118,6 @@ def logout():
 
 if __name__ == "__main__":
     create_db.create()
+    create_db.add_questions()
     app.debug = True
     app.run()

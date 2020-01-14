@@ -31,10 +31,12 @@ def create():
     db.close()  # close database
 
 def add_questions():
-    poke_questions = api.getPokemon()
-    #print(poke_questions)
-    x = 0;
-    while x < 50:
-        db_functions.create_question('pokemon', poke_questions[x], poke_questions[x+1])
-        x += 2
-        print(x)
+    pokemon_num = db_functions.category_size('pokemon')
+    if pokemon_num < 25:
+        poke_questions = api.getPokemon()
+        #print(poke_questions)
+        x = 2 * pokemon_num;
+        while x < 50:
+            db_functions.create_question('pokemon', poke_questions[x], poke_questions[x+1])
+            x += 2
+            print(x)

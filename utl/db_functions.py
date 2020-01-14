@@ -60,6 +60,17 @@ def get_highest_num(table, col):
     db.close()  # close database
     return response
 
+#Finds how many questions are in a category
+def category_size(category):
+    db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
+    c = db.cursor()  # facilitate db ops
+    query = "SELECT COUNT(*) FROM questions WHERE questions.category = \"%s\";" % (category)
+    c.execute(query)
+    response = c.fetchone()[0]
+    db.commit()  # save changes
+    db.close()  # close database
+    return response
+
 def create_question(category, question, answer):
     db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
     c = db.cursor()  # facilitate db ops

@@ -15,7 +15,7 @@ def create():
     # test SQL stmt in sqlite3 shell, save as string
     create_table_users = "CREATE TABLE IF NOT EXISTS users(user_id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT);"
     insert_user = "INSERT OR IGNORE INTO users(user_id, username, password) VALUES( 1, \"admin\", \"peterstuy\");"
-    create_table_board = "CREATE TABLE IF NOT EXISTS board(board_id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER, board_name UNIQUE, q1 INTEGER, q2 INTEGER, q3 INTEGER, q4 INTEGER, q5 INTEGER);"
+    create_table_board = "CREATE TABLE IF NOT EXISTS board(board_id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER, board_name TEXT, category TEXT, q1 INTEGER, q2 INTEGER, q3 INTEGER, q4 INTEGER, q5 INTEGER);"
     create_table_teams = "CREATE TABLE IF NOT EXISTS teams(game_id INTEGER PRIMARY KEY AUTOINCREMENT, team_name TEXT, score INTEGER);"
     create_table_board_status = "CREATE TABLE IF NOT EXISTS board_status(board_id INTEGER PRIMARY KEY, category TEXT, q1 INTEGER, q2 INTEGER, q3 INTEGER, q4 INTEGER, q5 INTEGER);"
     create_table_questions = "CREATE TABLE IF NOT EXISTS questions(question_id INTEGER PRIMARY KEY AUTOINCREMENT, category TEXT, question TEXT, answer TEXT);"

@@ -8,5 +8,22 @@ Play Jeopardy!
 <div id="pic" contextmenu="mymenu">
   <p>Click me</p>
 </div>
+<form>
+  <div class="form-group row">
+    <label for="teams" class="col-auto col-form-label">Number of Teams: </label>
+    <div class="col-auto">
+      <select class="form-control" id="teams">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select>
+    </div>
+    <button class="btn btn-outline-primary" type="button" name="button" onclick="addTeams()">Submit</button>
+  </div>
+  <div id="numteams">
+  </div>
+</form>
 
 {% endblock %}

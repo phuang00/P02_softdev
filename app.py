@@ -67,12 +67,17 @@ def board():
 def create():
     if 'user' in session:
         if request.args:
-            c1 = request.args.get('c1')
-            if c1 == 'pokemon':
-                question_ids = []
-                for x in range(5):
-                    question_ids.append(random.randrange(1, 25, 1))
-                print(question_ids)
+            categories = []
+            for i in range(1, 6):
+                cat = "c" + str(i)
+                categories.append(request.args.get(cat))
+            question_ids = []
+            for c in categories:
+                if c == 'pokemon':
+                    for x in range(5):
+                        question_ids.append(random.randrange(1, 25, 1))
+            #print(question_ids)
+            db_functions.create_board(session['id'], request.args.get('board_name'), categories, question_ids)
             return redirect(url_for('home'))
         return render_template('create.html')
     return redirect(url_for('login'))

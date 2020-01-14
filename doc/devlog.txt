@@ -76,3 +76,10 @@ peihuaH -- 2020-01-12 02:17
 
 peihuaH -- 2020-01-13 11:40
 - updated app.py and db files so that submitting a customized table adds the questions and the boards to database
+
+hilaryZ -- 2020-01-14 00:05
+- wrote function in create_db to add all the questions from our APIs when the website is first started
+- added a function that returns how many questions a specific category has, database will only call from the API if there are less than 25 questions
+- made a basic form for /create where the user can pick five categories
+- the create function now picks a random five questions for each category picked by the user
+- board is created, and user is redirected to the homepage

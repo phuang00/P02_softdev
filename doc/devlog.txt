@@ -83,3 +83,7 @@ hilaryZ -- 2020-01-14 00:05
 - made a basic form for /create where the user can pick five categories
 - the create function now picks a random five questions for each category picked by the user
 - board is created, and user is redirected to the homepage
+
+hilaryZ -- 2020-01-14 09:25
+- created buttons for a user's boards to take them to /play
+- wrote functions to get a board id and categories, working on creating the board status

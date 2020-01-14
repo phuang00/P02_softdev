@@ -19,8 +19,7 @@ def getCountries():
         # answer
         d.append(data[0][y]['name'])
         x = x - 1
-
-    return
+    return d
 
 # OPEN TRIVIA API
 def getOpenTrivia():
@@ -58,7 +57,7 @@ def getRickAndMorty():
         # answer
         d.append(data[0]['results'][n]['name'])
         l = l + 1
-    return
+    return d
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
@@ -85,5 +84,4 @@ def getPokemon():
         # answer
         d.append(data['results'][m]['name'])
         m = m - 1
-
     return d

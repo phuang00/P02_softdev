@@ -31,6 +31,7 @@ def create():
     db.close()  # close database
 
 def add_questions():
+    #Adding Pokemon questions
     pokemon_num = db_functions.category_size('pokemon')
     if pokemon_num < 25:
         poke_questions = api.getPokemon()
@@ -39,4 +40,21 @@ def add_questions():
         while x < 50:
             db_functions.create_question('pokemon', poke_questions[x], poke_questions[x+1])
             x += 2
-            print(x)
+
+    #Adding countries questions
+    countries_num = db_functions.category_size('countries')
+    if countries_num < 25:
+        country_questions = api.getCountries()
+        x = 2 * countries_num;
+        while x < 50:
+            db_functions.create_question('countries', country_questions[x], country_questions[x+1])
+            x += 2
+
+    rick_morty_num = db_functions.category_size('rick_morty')
+    if rick_morty_num < 25:
+        rick_morty_questions = api.getRickAndMorty()
+        #print(rick_morty_questions)
+        x = 2 * rick_morty_num;
+        while x < 50:
+            db_functions.create_question('rick_morty', rick_morty_questions[x], rick_morty_questions[x+1])
+            x += 2

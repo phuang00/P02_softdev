@@ -76,6 +76,12 @@ def create():
                 if c == 'pokemon':
                     for x in range(5):
                         question_ids.append(random.randrange(1, 25, 1))
+                elif c == 'countries':
+                    for x in range(5):
+                        question_ids.append(random.randrange(26, 50, 1))
+                elif c == 'rick_morty':
+                    for x in range(5):
+                        question_ids.append(random.randrange(51, 75, 1))
             #print(question_ids)
             db_functions.create_board(session['id'], request.args.get('board_name'), categories, question_ids)
             return redirect(url_for('home'))

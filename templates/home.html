@@ -12,7 +12,9 @@ Homepage
   <h6>User History</h6>
   <ul>
     {% for item in games %}
-    <li>{{item}}</li>
+    <form method="GET" action="/play">
+      <button type="submit" name = "submit" value={{ item }}>{{ item }}</button>
+    </form>
     {% endfor %}
   </ul>
 </div>

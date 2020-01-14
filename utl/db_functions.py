@@ -49,6 +49,30 @@ def get_user_id(username):
     db.close()  # close database
     return response
 
+def get_board_id(user_id, board_name):
+    db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
+    c = db.cursor()  # facilitate db ops
+
+    query = "SELECT board_id FROM board WHERE user_id == \"%s\" AND board_name == \"%s\";" % (user_id, board_name)
+    c.execute(query)
+    response = c.fetchone()[0]
+    db.commit()  # save changes
+    db.close()  # close database
+    return response
+
+def get_board_categories(user_id, board_name):
+    db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
+    c = db.cursor()  # facilitate db ops
+
+    query = "SELECT category FROM board WHERE user_id == \"%s\" AND board_name == \"%s\";" % (user_id, board_name)
+    c.execute(query)
+    data = []
+    for row in c.fetchall():
+        data.append(row[0])
+    db.commit()  # save changes
+    db.close()  # close database
+    return data
+
 # Gets the highest id currently in a table column
 def get_highest_num(table, col):
     db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
@@ -93,7 +117,7 @@ def create_game(board_id, categoryList):
     c = db.cursor()
     i = 0
     while i < 5:
-        query = "INSERT INTO board_status(board_id, category, q1, q2 ,q3 ,q4 ,q5) VALUES(\"%s\", 1, 1, 1, 1, 1)" % (categoryList[i])
+        query = "INSERT INTO board_status(board_id, category, q1, q2 ,q3 ,q4 ,q5) VALUES(\"%s\", \"%s\", 1, 1, 1, 1, 1)" % (board_id, categoryList[i])
         response = list(c.execute(query))
         i += 1
     db.commit()

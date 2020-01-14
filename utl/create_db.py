@@ -1,4 +1,5 @@
 import sqlite3  # enable control of an sqlite database
+from utl import api, db_functions
 
 DB_FILE = "jeopardy.db"
 
@@ -19,7 +20,6 @@ def create():
     create_table_board_status = "CREATE TABLE IF NOT EXISTS board_status(board_id INTEGER PRIMARY KEY, category TEXT, q1 INTEGER, q2 INTEGER, q3 INTEGER, q4 INTEGER, q5 INTEGER);"
     create_table_questions = "CREATE TABLE IF NOT EXISTS questions(question_id INTEGER PRIMARY KEY AUTOINCREMENT, category TEXT, question TEXT, answer TEXT);"
 
-
     c.execute(create_table_users)
     c.execute(insert_user)
     c.execute(create_table_board)
@@ -29,3 +29,12 @@ def create():
 
     db.commit()  # save changes
     db.close()  # close database
+
+def add_questions():
+    poke_questions = api.getPokemon()
+    #print(poke_questions)
+    x = 0;
+    while x < 50:
+        db_functions.create_question('pokemon', poke_questions[x], poke_questions[x+1])
+        x += 2
+        print(x)

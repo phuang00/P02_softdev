@@ -86,6 +86,4 @@ def getPokemon():
         d.append(data['results'][m]['name'])
         m = m - 1
 
-    return
-
-
+    return d

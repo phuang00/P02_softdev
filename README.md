@@ -36,6 +36,6 @@ Our project allows users to create their own Jeopardy boards or use randomly gen
    python3 app.py
    ```
    Once the Flask is running, open http://127.0.0.1:5000/ in the browser
-5. When you are finished, deactivate it by entering `deactivate` into the command line.
+5. When you are finished, deactivate the virtual machine by entering `deactivate` into the command line.
 
 ---

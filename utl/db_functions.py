@@ -74,7 +74,7 @@ def category_size(category):
 def create_question(category, question, answer):
     db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
     c = db.cursor()  # facilitate db ops
-    #print(NOT EXISTS (SELECT * FROM questions WHERE question = question2))
+    #IF NOT EXISTS (SELECT * FROM questions WHERE question=question)
     #if (NOT EXISTS (SELECT * FROM questions WHERE question = question2)):
     #    query = "INSERT INTO questions(category, question, answer) VALUES(\"%s\", \"%s\", \"%s\");" % (category, question2, answer)
     #    response = list(c.execute(query))
@@ -104,13 +104,17 @@ def create_board(user_id, board_name, categories, question_ids):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     i = 0
+    response = list(c.execute("SELECT MAX(board_id) FROM board")))
+    board_id = response[0] + 1
     while i < 5:
-        c.execute("INSERT INTO board(user_id, board_name, category, q1, q2, q3, q4, q5) VALUES(?, ?, ?, ?, ?, ?, ?, ?);",
+        c.execute("INSERT INTO board(board_id, user_id, board_name, category, q1, q2, q3, q4, q5) VALUES(?, ?, ?, ?, ?, ?, ?, ?);",
                   (int(user_id), board_name, categories[i], int(question_ids[i * 5]), int(question_ids[i * 5 + 1]),
                   int(question_ids[(i * 5 + 2)]), int(question_ids[i * 5 + 3]), int(question_ids[i * 5 + 4],)))
         i = i + 1
     db.commit()
     db.close()
+
+create_board(2,"s","s",[2,4,3,5,3,5,3,3,5,4])
 
 def add_flag_questions(flag_list):
     i = 0
@@ -136,7 +140,8 @@ def add_general_questions(question_list):
         create_question("General Knowledge",question_list[i],question_list[i+1])
         i += 2
 
-#create_question("GEN","hithere","hello")
+# create_question("GEN","hithere","hello")
+# create_question("GEN","hithere","hello")
 
 def get_games(username):
     history = []

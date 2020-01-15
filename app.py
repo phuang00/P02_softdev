@@ -123,7 +123,19 @@ def customize():
 def play():
     if 'user' in session:
         if 'game_id' in request.args:
-            return render_template('game.html')
+            game_id = request.args.get('game_id')
+            teams = db_functions.get_teams(game_id)
+            board_id = db_functions.get_board_id(game_id)
+            board_name = db_functions.get_board_name(session['id'], board_id)
+            categories = db_functions.get_board_categories(session['id'], board_id)
+            question_ids = db_functions.get_board_question_ids(board_id)
+            questions = db_functions.get_board_questions(question_ids)
+            questions.insert(0, categories[0])
+            questions.insert(11, categories[1])
+            questions.insert(22, categories[2])
+            questions.insert(33, categories[3])
+            questions.insert(44, categories[4])
+            return render_template('game.html', game_id = game_id, board_name = board_name, data = questions, teams=teams)
         if 'board_id' in request.args:
             board_id = request.args['board_id']
             user_id = session['id']
@@ -152,7 +164,7 @@ def play():
                 questions.insert(33, categories[3])
                 questions.insert(44, categories[4])
                 #Format of questions array: category, q1, a1, q2, a2, q3, a3, q4, a4, q5, a5, ...
-                print(questions)
+                #print(questions)
                 return render_template('game.html', game_id=game_id, board_name=board_name, data=questions, teams=teams)
             return render_template('play.html', board_id=request.args['board_id'])
         return redirect(url_for('board'))

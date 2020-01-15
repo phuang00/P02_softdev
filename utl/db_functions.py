@@ -60,6 +60,17 @@ def get_board_name(user_id, board_id):
     db.close()  # close database
     return response
 
+def get_board_id(game_id):
+    db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
+    c = db.cursor()  # facilitate db ops
+
+    query = "SELECT board_id FROM board_status WHERE game_id == \"%s\";" % (game_id)
+    c.execute(query)
+    response = c.fetchone()[0]
+    db.commit()  # save changes
+    db.close()  # close database
+    return response
+
 def get_board_categories(user_id, board_id):
     db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
     c = db.cursor()  # facilitate db ops
@@ -183,7 +194,18 @@ def create_team(game_id, team_name):
 
     return response
 
-#create_board(2,"s","s",[2,4,3,5,3,5,3,3,5,4])
+def get_teams(game_id):
+    db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
+    c = db.cursor()  # facilitate db ops
+
+    query = "SELECT team_name FROM teams WHERE game_id == \"%s\";" % (game_id)
+    c.execute(query)
+    data = []
+    for row in c.fetchall():
+        data.append(row[0])
+    db.commit()  # save changes
+    db.close()  # close database
+    return data
 
 def get_boards(username):
     history = {}

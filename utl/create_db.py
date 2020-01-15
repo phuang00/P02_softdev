@@ -69,3 +69,30 @@ def add_questions():
         while x < 50:
             db_functions.create_question('history', history_questions[x], history_questions[x+1])
             x += 2
+
+    science_num = db_functions.category_size('science')
+    if science_num < 25:
+        science_questions = api.getScience()
+        #print(rick_morty_questions)
+        x = 2 * science_num;
+        while x < 50:
+            db_functions.create_question('science', science_questions[x], science_questions[x+1])
+            x += 2
+
+    film_num = db_functions.category_size('film')
+    if film_num < 25:
+        film_questions = api.getFilm()
+        #print(rick_morty_questions)
+        x = 2 * film_num;
+        while x < 50:
+            db_functions.create_question('film', film_questions[x], film_questions[x+1])
+            x += 2
+
+    animals_num = db_functions.category_size('animals')
+    if animals_num < 20:
+        animals_questions = api.getAnimals()
+        #print(rick_morty_questions)
+        x = 2 * animals_num;
+        while x < 40:
+            db_functions.create_question('animals', animals_questions[x], animals_questions[x+1])
+            x += 2

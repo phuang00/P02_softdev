@@ -85,6 +85,15 @@ def create():
                 elif c == 'history':
                     for x in range(5):
                         question_ids.append(random.randrange(76, 100, 1))
+                elif c == 'science':
+                    for x in range(5):
+                        question_ids.append(random.randrange(101, 125, 1))
+                elif c == 'film':
+                    for x in range(5):
+                        question_ids.append(random.randrange(126, 150, 1))
+                elif c == 'animals':
+                    for x in range(5):
+                        question_ids.append(random.randrange(151, 170, 1))
             #print(question_ids)
             db_functions.create_board(session['id'], request.args.get('board_name'), categories, question_ids)
             return redirect(url_for('home'))

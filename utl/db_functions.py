@@ -208,8 +208,12 @@ def search_board(name):
 def add_score(id,team,score_added):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("UPDATE teams SET score=score+score_added WHERE game_id=id AND team_name=team")
+    c.execute("UPDATE teams SET score=score+ ? WHERE game_id=? AND team_name=?", (score_added,id,team,))
     db.commit()
     db.close()
 
 def get_games(username):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    id = c.execute("SELECT user_id FROM users WHERE username = ?", (username,))
+    

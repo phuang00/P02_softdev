@@ -117,10 +117,13 @@ def play():
             categories = db_functions.get_board_categories(user_id, board_name)
             print(board_id)
             print(categories)
-            db_functions.create_game(board_id, categories)
+            session['game_id'] = db_functions.create_game(board_id, categories)
             return render_template('play.html')
         elif 'team1' in request.args:
-            print(request.args.get('team1'))
+            x = 1;
+            while 'team' + str(x) in request.args:
+                db_functions.create_team(session['game_id'], request.args.get('team' + str(x)))
+                x += 1
             return render_template('game.html')
         return redirect(url_for('board'))
     return redirect(url_for('login'))

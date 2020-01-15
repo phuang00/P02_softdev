@@ -125,7 +125,7 @@ def create_game(board_id, categoryList):
         i += 1
     db.commit()
     db.close()
-    return
+    return game_id
 
 def create_board(user_id, board_name, categories, question_ids):
     db = sqlite3.connect(DB_FILE)
@@ -139,6 +139,17 @@ def create_board(user_id, board_name, categories, question_ids):
         i = i + 1
     db.commit()
     db.close()
+
+def create_team(game_id, team_name):
+    db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
+    c = db.cursor()  # facilitate db ops
+
+    query = "INSERT INTO teams(game_id, team_name, score) VALUES(\"%s\", \"%s\", 0);" % (game_id, team_name)
+    response = list(c.execute(query))
+    db.commit()  # save changes
+    db.close()  # close database
+
+    return response
 
 #create_board(2,"s","s",[2,4,3,5,3,5,3,3,5,4])
 

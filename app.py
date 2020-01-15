@@ -134,11 +134,13 @@ def play():
             #print(categories)
             if 'team1' in request.args:
                 print("aahhhhh")
-                #Add teams to database
+                #Add teams to database / get list of teams
                 x = 1;
+                teams = []
                 game_id = db_functions.create_game(session['id'], board_id, categories)
                 while 'team' + str(x) in request.args:
                     db_functions.create_team(game_id, request.args.get('team' + str(x)))
+                    teams.append(request.args.get('team' + str(x)))
                     x += 1
                 #Getting array of questions
                 categories = db_functions.get_board_categories(session['id'], session['board_id'])
@@ -151,7 +153,7 @@ def play():
                 questions.insert(44, categories[4])
                 #Format of questions array: category, q1, a1, q2, a2, q3, a3, q4, a4, q5, a5, ...
                 print(questions)
-                return render_template('game.html', game_id=game_id, board_name=board_name, data=questions)
+                return render_template('game.html', game_id=game_id, board_name=board_name, data=questions, teams=teams)
             return render_template('play.html', board_id=request.args['board_id'])
         return redirect(url_for('board'))
     return redirect(url_for('login'))

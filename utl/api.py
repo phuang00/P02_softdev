@@ -22,8 +22,8 @@ def getCountries():
     return d
 
 # OPEN TRIVIA API
-def getOpenTrivia():
-    pop = urllib.request.urlopen("https://opentdb.com/api.php?amount=25")
+def getHistory():
+    pop = urllib.request.urlopen("https://opentdb.com/api.php?amount=25&category=23&type=boolean")
     # so far only has one set of questions
     data = [json.loads(pop.read())]
     m = 24;
@@ -32,8 +32,7 @@ def getOpenTrivia():
         d.append(data[0]['results'][m]['question'])
         d.append(data[0]['results'][m]['correct_answer'])
         m = m - 1
-
-    return
+    return d
 
 # RICK AND MORTY API
 def getRickAndMorty():

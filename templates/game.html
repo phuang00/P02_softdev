@@ -1,9 +1,28 @@
 {% extends "base.html" %}
 
 {% block title %}
-Register
+Playing: {{board_name}}
 {% endblock %}
 
 {% block body %}
-<h1>In game</h1>
+<input type="hidden" name="game_id" value="{{game_id}}">
+<div class="text-center">
+  <h1>Board: {{board_name}}</h1>
+  <div class="row">
+    {% for i in range(5) %}
+      <div class="col">
+        {{data[i * 11]}}
+        <br>
+        <br>
+        {% for j in range(1,6) %}
+          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#{{data[i * 11]}}{{j*100}}">
+            {{j * 100}}
+          </button>
+          <br>
+          <br>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
 {% endblock %}

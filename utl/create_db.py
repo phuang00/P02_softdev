@@ -60,3 +60,12 @@ def add_questions():
         while x < 50:
             db_functions.create_question('rick_morty', rick_morty_questions[x], rick_morty_questions[x+1])
             x += 2
+
+    history_num = db_functions.category_size('history')
+    if history_num < 25:
+        history_questions = api.getHistory()
+        #print(rick_morty_questions)
+        x = 2 * history_num;
+        while x < 50:
+            db_functions.create_question('history', history_questions[x], history_questions[x+1])
+            x += 2

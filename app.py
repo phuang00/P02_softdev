@@ -82,6 +82,9 @@ def create():
                 elif c == 'rick_morty':
                     for x in range(5):
                         question_ids.append(random.randrange(51, 75, 1))
+                elif c == 'history':
+                    for x in range(5):
+                        question_ids.append(random.randrange(76, 100, 1))
             #print(question_ids)
             db_functions.create_board(session['id'], request.args.get('board_name'), categories, question_ids)
             return redirect(url_for('home'))
@@ -113,30 +116,32 @@ def play():
         if 'board_id' in request.args:
             board_id = request.args['board_id']
             user_id = session['id']
-            board_id = db_functions.get_board_id(user_id, board_name)
+            board_name = db_functions.get_board_name(user_id, board_id)
             session['board_id'] = board_id
             categories = db_functions.get_board_categories(user_id, board_id)
             #print(board_id)
             #print(categories)
-            session['game_id'] = db_functions.create_game(board_id, categories)
-            return render_template('play.html')
-        elif 'team1' in request.args:
-            #Add teams to database
-            x = 1;
-            while 'team' + str(x) in request.args:
-                db_functions.create_team(session['game_id'], request.args.get('team' + str(x)))
-                x += 1
-            #Getting array of questions
-            categories = db_functions.get_board_categories(session['id'], session['board_id'])
-            question_ids = db_functions.get_board_question_ids(session['board_id'])
-            questions = db_functions.get_board_questions(question_ids)
-            questions.insert(0, categories[0])
-            questions.insert(11, categories[1])
-            questions.insert(22, categories[2])
-            questions.insert(33, categories[3])
-            questions.insert(44, categories[4])
-            #Format of questions array: category, q1, a1, q2, a2, q3, a3, q4, a4, q5, a5, ...
-            return render_template('game.html')
+            if 'team1' in request.args:
+                print("aahhhhh")
+                #Add teams to database
+                x = 1;
+                game_id = db_functions.create_game(board_id, categories)
+                while 'team' + str(x) in request.args:
+                    db_functions.create_team(game_id, request.args.get('team' + str(x)))
+                    x += 1
+                #Getting array of questions
+                categories = db_functions.get_board_categories(session['id'], session['board_id'])
+                question_ids = db_functions.get_board_question_ids(session['board_id'])
+                questions = db_functions.get_board_questions(question_ids)
+                questions.insert(0, categories[0])
+                questions.insert(11, categories[1])
+                questions.insert(22, categories[2])
+                questions.insert(33, categories[3])
+                questions.insert(44, categories[4])
+                #Format of questions array: category, q1, a1, q2, a2, q3, a3, q4, a4, q5, a5, ...
+                print(questions)
+                return render_template('game.html', game_id=game_id, board_name=board_name, data=questions)
+            return render_template('play.html', board_id=request.args['board_id'])
         return redirect(url_for('board'))
     return redirect(url_for('login'))
 

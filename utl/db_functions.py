@@ -146,14 +146,14 @@ def create_question(category, question, answer):
     id = get_highest_num('questions', 'question_id')
     return id
 
-def create_game(board_id, categoryList):
+def create_game(user_id, board_id, categoryList):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     game_id = get_highest_num('board_status', 'game_id') + 1
     i = 0
     while i < 5:
         #query = "INSERT INTO board_status(board_id, category, q1, q2 ,q3 ,q4 ,q5) VALUES(\"%s\", \"%s\", 1, 1, 1, 1, 1)" % (board_id, categoryList[i])
-        c.execute("INSERT INTO board_status(board_id, game_id, category, q1, q2 ,q3 ,q4 ,q5) VALUES(?, ?, ?, 1, 1, 1, 1, 1)", (board_id, game_id, categoryList[i]))
+        c.execute("INSERT INTO board_status(user_id, board_id, game_id, category, q1, q2 ,q3 ,q4 ,q5) VALUES(?, ?, ?, ?, 1, 1, 1, 1, 1)", (user_id, board_id, game_id, categoryList[i]))
         i += 1
     db.commit()
     db.close()

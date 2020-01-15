@@ -134,7 +134,7 @@ def play():
                 print("aahhhhh")
                 #Add teams to database
                 x = 1;
-                game_id = db_functions.create_game(board_id, categories)
+                game_id = db_functions.create_game(session['id'], board_id, categories)
                 while 'team' + str(x) in request.args:
                     db_functions.create_team(game_id, request.args.get('team' + str(x)))
                     x += 1

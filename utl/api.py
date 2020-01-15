@@ -17,7 +17,7 @@ def getCountries():
         # question
         d.append(data[0][y]['flag'])
         # answer
-        d.append(data[0][y]['name'])
+        d.append('What is ' + data[0][y]['name'] + '?')
         x = x - 1
     return d
 
@@ -29,7 +29,7 @@ def getHistory():
     d = []
     while m >= 0:
         d.append(data[0]['results'][m]['question'])
-        d.append(data[0]['results'][m]['correct_answer'])
+        d.append('What is ' + data[0]['results'][m]['correct_answer'] + '?')
         m = m - 1
     return d
 
@@ -40,7 +40,7 @@ def getAnimals():
     d = []
     while m >= 0:
         d.append(data[0]['results'][m]['question'])
-        d.append(data[0]['results'][m]['correct_answer'])
+        d.append('What is ' + data[0]['results'][m]['correct_answer'] + '?')
         m = m - 1
     return d
 
@@ -51,7 +51,7 @@ def getScience():
     d = []
     while m >= 0:
         d.append(data[0]['results'][m]['question'])
-        d.append(data[0]['results'][m]['correct_answer'])
+        d.append('What is ' + data[0]['results'][m]['correct_answer'] + '?')
         m = m - 1
     return d
 
@@ -62,7 +62,7 @@ def getFilm():
     d = []
     while m >= 0:
         d.append(data[0]['results'][m]['question'])
-        d.append(data[0]['results'][m]['correct_answer'])
+        d.append('What is ' + data[0]['results'][m]['correct_answer'] + '?')
         m = m - 1
     return d
 
@@ -78,7 +78,7 @@ def getRickAndMorty():
             # question
             allCharacters.append(data[0]['results'][n]['image'])
             # answer
-            allCharacters.append(data[0]['results'][n]['name'])
+            allCharacters.append('Who is ' + data[0]['results'][n]['name'] + '?')
             n = n - 1
         a = a + 1
     """ Method for preventing duplicates """
@@ -93,7 +93,7 @@ def getRickAndMorty():
     while numQuestions > 0:
         index = random.randint(-1,size)
         y = randNums[index]
-        if y % 2 == 0: 
+        if y % 2 == 0:
             d.append(allCharacters[y])
             d.append(allCharacters[y+1])
             allCharacters.pop(y)
@@ -131,6 +131,6 @@ def getPokemon():
         monpics = [json.loads(mon)]
         d.append(monpics[0]['sprites']['front_default'])
         # answer
-        d.append(data['results'][m]['name'])
+        d.append('Who is ' + data['results'][m]['name'] + '?')
         m = m - 1
     return d

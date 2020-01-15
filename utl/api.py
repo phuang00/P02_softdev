@@ -70,7 +70,7 @@ def getFilm():
 def getRickAndMorty():
     a = 1;
     allCharacters = []
-    while a <= 10:
+    while a <= 5:
         pop = urllib.request.urlopen("https://rickandmortyapi.com/api/character/?page=" + str(a))
         data = [json.loads(pop.read())]
         n = 19
@@ -82,12 +82,12 @@ def getRickAndMorty():
             n = n - 1
         a = a + 1
     """ Method for preventing duplicates """
-    dummy = 200
+    dummy = 100
     randNums = []
     while dummy >= 0:
         randNums.append(dummy)
         dummy = dummy - 1
-    size = 200
+    size = 100
     numQuestions = 25
     d = []
     while numQuestions > 0:
@@ -106,10 +106,7 @@ def getRickAndMorty():
         randNums.pop(index)
         size = size - 1
         numQuestions = numQuestions - 1
-    print(d)
     return d
-
-getRickAndMorty()
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
@@ -122,7 +119,7 @@ headers = {
 
 # POKE API
 def getPokemon():
-    request = Request("https://pokeapi.co/api/v2/pokemon/?offset=200&limit=200", headers=headers)
+    request = Request("https://pokeapi.co/api/v2/pokemon/?offset=100&limit=100", headers=headers)
     response = urlopen(request).read()
     data = json.loads(response)
     m = 25

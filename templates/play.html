@@ -9,6 +9,7 @@ Play Jeopardy!
   <p>Click me</p>
 </div>
 <form>
+  <input type="hidden" name="board_id" value="{{request.args.get('board_id')}}">
   <div class="form-group row">
     <label for="teams" class="col-auto col-form-label">Number of Teams: </label>
     <div class="col-auto">

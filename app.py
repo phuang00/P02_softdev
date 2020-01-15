@@ -110,10 +110,10 @@ def customize():
 @app.route('/play')
 def play():
     if 'user' in session:
-        if 'submit' in request.args:
-            board_name = request.args.get("submit")
+        if 'board_id' in request.args:
+            board_id = request.args['board_id']
             user_id = session['id']
-            board_id = db_functions.get_board_id(user_id, board_name)
+            board_name = db_functions.get_board_name(user_id, board_id)
             categories = db_functions.get_board_categories(user_id, board_name)
             print(board_id)
             print(categories)

@@ -49,11 +49,11 @@ def get_user_id(username):
     db.close()  # close database
     return response
 
-def get_board_id(user_id, board_name):
+def get_board_name(user_id, board_id):
     db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
     c = db.cursor()  # facilitate db ops
 
-    query = "SELECT board_id FROM board WHERE user_id == \"%s\" AND board_name == \"%s\";" % (user_id, board_name)
+    query = "SELECT board_name FROM board WHERE user_id == \"%s\" AND board_id == \"%s\";" % (user_id, board_id)
     c.execute(query)
     response = c.fetchone()[0]
     db.commit()  # save changes
@@ -154,21 +154,21 @@ def create_team(game_id, team_name):
 #create_board(2,"s","s",[2,4,3,5,3,5,3,3,5,4])
 
 def get_games(username):
-    history = []
+    history = {}
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("SELECT DISTINCT board_name FROM board, users WHERE username = ? AND board.user_id == users.user_id;", (username,))
+    c.execute("SELECT DISTINCT board_name, board_id FROM board, users WHERE username = ? AND board.user_id == users.user_id;", (username,))
     for row in c.fetchall():
-        history.append(row[0])
+        history[row[0]] = row[1]
     return history
 
 def search_board(name):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("SELECT DISTINCT board_name FROM board WHERE board_name LIKE '%' || ? || '%';", (name,))
-    data = []
+    c.execute("SELECT DISTINCT board_name, board_id FROM board WHERE board_name LIKE '%' || ? || '%';", (name,))
+    data = {}
     for row in c.fetchall():
-        data.append(row[0])
+        data[row[0]] = row[1]
     db.commit()
     db.close()
     return data

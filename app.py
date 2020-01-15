@@ -82,6 +82,9 @@ def create():
                 elif c == 'rick_morty':
                     for x in range(5):
                         question_ids.append(random.randrange(51, 75, 1))
+                elif c == 'history':
+                    for x in range(5):
+                        question_ids.append(random.randrange(76, 100, 1))
             #print(question_ids)
             db_functions.create_board(session['id'], request.args.get('board_name'), categories, question_ids)
             return redirect(url_for('home'))
@@ -136,6 +139,8 @@ def play():
                 questions.insert(33, categories[3])
                 questions.insert(44, categories[4])
                 #Format of questions array: category, q1, a1, q2, a2, q3, a3, q4, a4, q5, a5, ...
+                return render_template('game.html', game_id=game_id, board_name=board_name)
+            elif 'answer' in request.args:
                 return render_template('game.html', game_id=game_id, board_name=board_name)
             return render_template('play.html', board_id=request.args['board_id'])
         return redirect(url_for('board'))

@@ -24,7 +24,6 @@ def getCountries():
 # OPEN TRIVIA API
 def getHistory():
     pop = urllib.request.urlopen("https://opentdb.com/api.php?amount=25&category=23&type=boolean")
-    # so far only has one set of questions
     data = [json.loads(pop.read())]
     m = 24;
     d = []
@@ -36,7 +35,6 @@ def getHistory():
 
 def getAnimals():
     pop = urllib.request.urlopen("https://opentdb.com/api.php?amount=20&category=27&type=boolean")
-    # so far only has one set of questions
     data = [json.loads(pop.read())]
     m = 19;
     d = []
@@ -48,7 +46,6 @@ def getAnimals():
 
 def getScience():
     pop = urllib.request.urlopen("https://opentdb.com/api.php?amount=25&category=17&type=boolean")
-    # so far only has one set of questions
     data = [json.loads(pop.read())]
     m = 24;
     d = []
@@ -60,7 +57,6 @@ def getScience():
 
 def getFilm():
     pop = urllib.request.urlopen("https://opentdb.com/api.php?amount=25&category=11&type=boolean")
-    # so far only has one set of questions
     data = [json.loads(pop.read())]
     m = 24;
     d = []
@@ -72,27 +68,48 @@ def getFilm():
 
 # RICK AND MORTY API
 def getRickAndMorty():
-    pop = urllib.request.urlopen("https://rickandmortyapi.com/api/character")
-    data = [json.loads(pop.read())]
-    n = 19
+    a = 1;
+    allCharacters = []
+    while a <= 10:
+        pop = urllib.request.urlopen("https://rickandmortyapi.com/api/character/?page=" + str(a))
+        data = [json.loads(pop.read())]
+        n = 19
+        while n >= 0:
+            # question
+            allCharacters.append(data[0]['results'][n]['image'])
+            # answer
+            allCharacters.append(data[0]['results'][n]['name'])
+            n = n - 1
+        a = a + 1
+    """ Method for preventing duplicates """
+    dummy = 200
+    randNums = []
+    while dummy >= 0:
+        randNums.append(dummy)
+        dummy = dummy - 1
+    size = 200
+    numQuestions = 25
     d = []
-    while n >= 0:
-        # question
-        d.append(data[0]['results'][n]['image'])
-        # answer
-        d.append(data[0]['results'][n]['name'])
-        n = n - 1
-    rick = urllib.request.urlopen("https://rickandmortyapi.com/api/character/?page=2")
-    morty = [json.loads(rick.read())]
-    l = 0
-    while l < 5:
-        y = random.randint(-1,19)
-        # question
-        d.append(data[0]['results'][n]['image'])
-        # answer
-        d.append(data[0]['results'][n]['name'])
-        l = l + 1
+    while numQuestions > 0:
+        index = random.randint(-1,size)
+        y = randNums[index]
+        if y % 2 == 0: 
+            d.append(allCharacters[y])
+            d.append(allCharacters[y+1])
+            allCharacters.pop(y)
+            allCharacters.pop(y)
+        if y % 2 == 1:
+            d.append(allCharacters[y-1])
+            d.append(allCharacters[y])
+            allCharacters.pop(y)
+            allCharacters.pop(y-1)
+        randNums.pop(index)
+        size = size - 1
+        numQuestions = numQuestions - 1
+    print(d)
     return d
+
+getRickAndMorty()
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
@@ -105,7 +122,7 @@ headers = {
 
 # POKE API
 def getPokemon():
-    request = Request("https://pokeapi.co/api/v2/pokemon/?offset=100&limit=100", headers=headers)
+    request = Request("https://pokeapi.co/api/v2/pokemon/?offset=200&limit=200", headers=headers)
     response = urlopen(request).read()
     data = json.loads(response)
     m = 25

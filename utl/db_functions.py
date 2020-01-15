@@ -117,10 +117,11 @@ def create_question(category, question, answer):
 def create_game(board_id, categoryList):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
+    game_id = get_highest_num('board_status', 'game_id') + 1
     i = 0
     while i < 5:
         #query = "INSERT INTO board_status(board_id, category, q1, q2 ,q3 ,q4 ,q5) VALUES(\"%s\", \"%s\", 1, 1, 1, 1, 1)" % (board_id, categoryList[i])
-        c.execute("INSERT INTO board_status(board_id, category, q1, q2 ,q3 ,q4 ,q5) VALUES(?, ?, 1, 1, 1, 1, 1)", (board_id, categoryList[i]))
+        c.execute("INSERT INTO board_status(board_id, game_id, category, q1, q2 ,q3 ,q4 ,q5) VALUES(?, ?, ?, 1, 1, 1, 1, 1)", (board_id, game_id, categoryList[i]))
         i += 1
     db.commit()
     db.close()
@@ -140,33 +141,6 @@ def create_board(user_id, board_name, categories, question_ids):
     db.close()
 
 #create_board(2,"s","s",[2,4,3,5,3,5,3,3,5,4])
-
-def add_flag_questions(flag_list):
-    i = 0
-    while i < len(flag_list):
-        create_question("geography",flag_list[i],flag_list[i+1])
-        i += 2
-
-def add_RM_questions(character_list):
-    i = 0
-    while i < len(character_list):
-        create_question("Rick and Morty",character_list[i],character_list[i+1])
-        i += 2
-
-def add_pokemon_questions(pokemon_list):
-    i = 0
-    while i < len(pokemon_list):
-        create_question("Pokemon",pokemon_list[i],pokemon_list[i+1])
-        i += 2
-
-def add_general_questions(question_list):
-    i = 0
-    while i < len(question_list):
-        create_question("General Knowledge",question_list[i],question_list[i+1])
-        i += 2
-
-# create_question("GEN","hithere","hello")
-# create_question("GEN","hithere","hello")
 
 def get_games(username):
     history = []

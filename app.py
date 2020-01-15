@@ -110,7 +110,7 @@ def customize():
 @app.route('/play')
 def play():
     if 'user' in session:
-        if request.args:
+        if 'submit' in request.args:
             board_name = request.args.get("submit")
             user_id = session['id']
             board_id = db_functions.get_board_id(user_id, board_name)
@@ -118,7 +118,11 @@ def play():
             print(board_id)
             print(categories)
             db_functions.create_game(board_id, categories)
-        return render_template('play.html')
+            return render_template('play.html')
+        elif 'team1' in request.args:
+            print(request.args.get('team1'))
+            return render_template('game.html')
+        return redirect(url_for('board'))
     return redirect(url_for('login'))
 
 @app.route('/search')

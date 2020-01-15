@@ -136,7 +136,7 @@ def play():
                 questions.insert(33, categories[3])
                 questions.insert(44, categories[4])
                 #Format of questions array: category, q1, a1, q2, a2, q3, a3, q4, a4, q5, a5, ...
-                return render_template('game.html', game_id=game_id)
+                return render_template('game.html', game_id=game_id, board_name=board_name)
             return render_template('play.html', board_id=request.args['board_id'])
         return redirect(url_for('board'))
     return redirect(url_for('login'))

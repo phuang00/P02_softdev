@@ -50,4 +50,30 @@ Playing: {{board_name}}
     {% endfor %}
   </div>
 </div>
+<br><br>
+<div class="container">
+  <center><h1>Scoreboard</h1></center>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+	<th scope="col">Team Name</th>
+	<th scope="col">Score</th>
+      </tr>
+    </thead>
+    {% for team in teams %}
+    <tbody>
+      <tr>
+	<th scope="row">{{ team }}</th>
+	<td id="row">
+	  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;                   	  
+	  <form>
+	    Score
+	    <input type="number" step="100" value="0" min="0" max="2500">
+	  </form>
+	</td>
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+</div>
 {% endblock %}

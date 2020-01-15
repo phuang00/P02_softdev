@@ -185,7 +185,7 @@ def create_team(game_id, team_name):
 
 #create_board(2,"s","s",[2,4,3,5,3,5,3,3,5,4])
 
-def get_games(username):
+def get_boards(username):
     history = {}
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
@@ -204,3 +204,16 @@ def search_board(name):
     db.commit()
     db.close()
     return data
+
+def add_score(id,team,score_added):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    c.execute("UPDATE teams SET score=score+ ? WHERE game_id=? AND team_name=?", (score_added,id,team,))
+    db.commit()
+    db.close()
+
+def get_games(username):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    id = c.execute("SELECT user_id FROM users WHERE username = ?", (username,))
+    

@@ -87,3 +87,9 @@ hilaryZ -- 2020-01-14 00:05
 hilaryZ -- 2020-01-14 09:25
 - created buttons for a user's boards to take them to /play
 - wrote functions to get a board id and categories, working on creating the board status
+
+hilaryZ -- 2020-01-15 01:39
+- added game to the board status database table
+- added game_id to the board_status table
+- added teams that the user creates to the database
+- wrote functions to get the array of questions and answers for the jeopardy board

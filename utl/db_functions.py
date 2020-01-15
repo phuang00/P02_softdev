@@ -208,7 +208,8 @@ def search_board(name):
 def add_score(id,team,score_added):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    newscore = score + c.execute("SELECT score FROM teams WHERE game_id=id AND team_name=team")
-    c.execute("UPDATE teams SET score=newscore WHERE game_id=id AND team_name=team")
+    c.execute("UPDATE teams SET score=score+score_added WHERE game_id=id AND team_name=team")
     db.commit()
     db.close()
+
+def get_games(username):

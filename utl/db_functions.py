@@ -60,15 +60,47 @@ def get_board_id(user_id, board_name):
     db.close()  # close database
     return response
 
-def get_board_categories(user_id, board_name):
+def get_board_categories(user_id, board_id):
     db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
     c = db.cursor()  # facilitate db ops
 
-    query = "SELECT category FROM board WHERE user_id == \"%s\" AND board_name == \"%s\";" % (user_id, board_name)
+    query = "SELECT category FROM board WHERE user_id == \"%s\" AND board_id == \"%s\";" % (user_id, board_id)
     c.execute(query)
     data = []
     for row in c.fetchall():
         data.append(row[0])
+    db.commit()  # save changes
+    db.close()  # close database
+    return data
+
+def get_board_question_ids(board_id):
+    db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
+    c = db.cursor()  # facilitate db ops
+
+    query = "SELECT * FROM board WHERE board_id == \"%s\";" % (board_id)
+    c.execute(query)
+    data = []
+    for row in c.fetchall():
+        data.append(row[4])
+        data.append(row[5])
+        data.append(row[6])
+        data.append(row[7])
+        data.append(row[8])
+    db.commit()  # save changes
+    db.close()  # close database
+    return data
+
+def get_board_questions(question_ids):
+    db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
+    c = db.cursor()  # facilitate db ops
+    data = []
+
+    for q in question_ids:
+        query = "SELECT question, answer FROM questions WHERE question_id == \"%s\";" % (q)
+        c.execute(query)
+        for row in c.fetchall():
+            data.append(row[0])
+            data.append(row[1])
     db.commit()  # save changes
     db.close()  # close database
     return data

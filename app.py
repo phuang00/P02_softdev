@@ -117,7 +117,7 @@ def play():
             categories = db_functions.get_board_categories(user_id, board_name)
             print(board_id)
             print(categories)
-            #db_functions.create_game(board_id, categories)
+            db_functions.create_game(board_id, categories)
         return render_template('play.html')
     return redirect(url_for('login'))
 

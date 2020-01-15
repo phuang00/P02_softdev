@@ -119,12 +119,12 @@ def create_game(board_id, categoryList):
     c = db.cursor()
     i = 0
     while i < 5:
-        query = "INSERT INTO board_status(board_id, category, q1, q2 ,q3 ,q4 ,q5) VALUES(\"%s\", \"%s\", 1, 1, 1, 1, 1)" % (board_id, categoryList[i])
-        response = list(c.execute(query))
+        #query = "INSERT INTO board_status(board_id, category, q1, q2 ,q3 ,q4 ,q5) VALUES(\"%s\", \"%s\", 1, 1, 1, 1, 1)" % (board_id, categoryList[i])
+        c.execute("INSERT INTO board_status(board_id, category, q1, q2 ,q3 ,q4 ,q5) VALUES(?, ?, 1, 1, 1, 1, 1)", (board_id, categoryList[i]))
         i += 1
     db.commit()
     db.close()
-    return response
+    return
 
 def create_board(user_id, board_name, categories, question_ids):
     db = sqlite3.connect(DB_FILE)

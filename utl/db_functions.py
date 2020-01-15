@@ -80,6 +80,8 @@ def get_highest_num(table, col):
     query = "SELECT MAX(%s) FROM %s;" % (col, table)
     c.execute(query)
     response = c.fetchone()[0]
+    if response == None:
+        response = 0
     db.commit()  # save changes
     db.close()  # close database
     return response
@@ -128,17 +130,16 @@ def create_board(user_id, board_name, categories, question_ids):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     i = 0
-    response = list(c.execute("SELECT MAX(board_id) FROM board")))
-    board_id = response[0] + 1
+    board_id = get_highest_num("board", "board_id") + 1
     while i < 5:
-        c.execute("INSERT INTO board(board_id, user_id, board_name, category, q1, q2, q3, q4, q5) VALUES(?, ?, ?, ?, ?, ?, ?, ?);",
-                  (int(user_id), board_name, categories[i], int(question_ids[i * 5]), int(question_ids[i * 5 + 1]),
-                  int(question_ids[(i * 5 + 2)]), int(question_ids[i * 5 + 3]), int(question_ids[i * 5 + 4],)))
+        c.execute("INSERT INTO board(board_id, user_id, board_name, category, q1, q2, q3, q4, q5) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);",
+                  (board_id, user_id, board_name, categories[i], question_ids[i * 5], question_ids[i * 5 + 1],
+                   question_ids[(i * 5 + 2)], question_ids[i * 5 + 3], question_ids[i * 5 + 4],))
         i = i + 1
     db.commit()
     db.close()
 
-create_board(2,"s","s",[2,4,3,5,3,5,3,3,5,4])
+#create_board(2,"s","s",[2,4,3,5,3,5,3,3,5,4])
 
 def add_flag_questions(flag_list):
     i = 0

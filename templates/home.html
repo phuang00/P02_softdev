@@ -9,11 +9,21 @@ Homepage
 <div class="container-fluid text-center" >
   <h1>Welcome {{ user }} to JEOPARDY!</h1>
   <br>
-  <h6>User History</h6>
+  <h6>Games History</h6>
   <ul>
     {% for item in games %}
     <form method="GET" action="/play">
-      <button type="submit" name="board_id" value={{games[item]}}>{{ item }}</button>
+      <button type="submit" name="game_id" value={{games[item]}}>{{ item }}</button>
+    </form>
+    {% endfor %}
+  </ul>
+  <br>
+  <br>
+  <h6>Your Boards</h6>
+  <ul>
+    {% for item in boards %}
+    <form method="GET" action="/play">
+      <button type="submit" name="board_id" value={{boards[item]}}>{{ item }}</button>
     </form>
     {% endfor %}
   </ul>

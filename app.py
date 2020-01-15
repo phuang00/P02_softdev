@@ -54,7 +54,7 @@ def register():
 @app.route('/home')
 def home():
     if 'user' in session:
-        return render_template('home.html', user = session['user'], games=db_functions.get_games(session['id']))
+        return render_template('home.html', user = session['user'], games=db_functions.get_games(session['id']), boards=db_functions.get_boards(session['user']))
     return redirect(url_for('login'))
 
 @app.route('/board')
@@ -122,6 +122,8 @@ def customize():
 @app.route('/play')
 def play():
     if 'user' in session:
+        if 'game_id' in request.args:
+            return render_template('game.html')
         if 'board_id' in request.args:
             board_id = request.args['board_id']
             user_id = session['id']

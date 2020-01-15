@@ -213,6 +213,10 @@ def add_score(id,team,score_added):
     db.close()
 
 def get_games(user_id):
+    games = {}
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    #id = c.execute("SELECT user_id FROM users WHERE username = ?", (username,))
+    c.execute("SELECT DISTINCT board_name, game_id FROM board, board_status, users WHERE board.board_id == board_status.board_id AND board_status.user_id == ?;", (user_id,))
+    for row in c.fetchall():
+        games[row[0]] = row[1]
+    return games

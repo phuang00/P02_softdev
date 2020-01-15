@@ -54,7 +54,7 @@ def register():
 @app.route('/home')
 def home():
     if 'user' in session:
-        return render_template('home.html', user = session['user'], games=db_functions.get_games(session['user']))
+        return render_template('home.html', user = session['user'], games=db_functions.get_games(session['id']))
     return redirect(url_for('login'))
 
 @app.route('/board')

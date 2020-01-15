@@ -212,8 +212,7 @@ def add_score(id,team,score_added):
     db.commit()
     db.close()
 
-def get_games(username):
+def get_games(user_id):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    id = c.execute("SELECT user_id FROM users WHERE username = ?", (username,))
-    
+    #id = c.execute("SELECT user_id FROM users WHERE username = ?", (username,))

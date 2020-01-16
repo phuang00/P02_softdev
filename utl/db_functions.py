@@ -318,3 +318,19 @@ def get_games(user_id):
     for row in c.fetchall():
         games[row[0]] = row[1]
     return games
+
+def get_score(game_id):
+    scores = []
+    db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
+    c = db.cursor()  # facilitate db ops
+
+   #query = "SELECT score FROM teams WHERE game_id == \"%s\" AND team_name == \"%s\";"  % (game_id,team_name)
+    query = "SELECT score FROM teams WHERE game_id == \"%s\";"  % (game_id)
+    c.execute(query)
+    #response = c.fetchall()[0]
+    for score in c.fetchall():
+        scores.append(score[0])
+    #print(scores)
+    db.commit()  # save changes
+    db.close()  # close database
+    return scores

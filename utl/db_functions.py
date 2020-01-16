@@ -49,11 +49,11 @@ def get_user_id(username):
     db.close()  # close database
     return response
 
-def get_board_name(user_id, board_id):
+def get_board_name(board_id):
     db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
     c = db.cursor()  # facilitate db ops
 
-    query = "SELECT board_name FROM board WHERE user_id == \"%s\" AND board_id == \"%s\";" % (user_id, board_id)
+    query = "SELECT board_name FROM board WHERE board_id == \"%s\";" % (board_id)
     c.execute(query)
     response = c.fetchone()[0]
     db.commit()  # save changes
@@ -71,11 +71,11 @@ def get_board_id(game_id):
     db.close()  # close database
     return response
 
-def get_board_categories(user_id, board_id):
+def get_board_categories(board_id):
     db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
     c = db.cursor()  # facilitate db ops
 
-    query = "SELECT category FROM board WHERE user_id == \"%s\" AND board_id == \"%s\";" % (user_id, board_id)
+    query = "SELECT category FROM board WHERE board_id == \"%s\";" % (board_id)
     c.execute(query)
     data = []
     for row in c.fetchall():
@@ -193,6 +193,7 @@ def create_board(user_id, board_name, categories, question_ids):
     i = 0
     board_id = get_highest_num("board", "board_id") + 1
     while i < 5:
+        print(i)
         c.execute("INSERT INTO board(board_id, user_id, board_name, row, category, q1, q2, q3, q4, q5) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
                   (board_id, user_id, board_name, i, categories[i], question_ids[i * 5], question_ids[i * 5 + 1],
                    question_ids[(i * 5 + 2)], question_ids[i * 5 + 3], question_ids[i * 5 + 4],))

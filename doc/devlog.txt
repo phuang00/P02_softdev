@@ -132,3 +132,7 @@ peihuaH -- 2020-01-16 01:38
 - Fixed bug that creates a null account when clicking register
 - fixed bug where the first person to play doesnt get added to leadership board
 - added dummy db file
+
+aliceN -- 2020-01-16 01:48
+- added formatting for the register page so it matches login
+- added formatting for the home page, the play page, and the create page 

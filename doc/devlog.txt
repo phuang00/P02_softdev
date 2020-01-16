@@ -118,6 +118,13 @@ hilaryZ -- 2020-01-15 19:52
 - wrote check_if_finished() using board_status table
 - working on passing information from questions to app.py
 
+hilaryZ -- 2020-01-15 22:25
+- added turn column to teams table, to track who should be getting points
+- created functions to get whose turn it currently is, and change it to the next team
+- wrote functions that update board_status when a question is answered, add points to the current team
+- get board status and pass it into game.html to check which questions cannot be answered again
+- added rows to board and board_status tables to make finding specific questions easier
+
 peihuaH -- 2020-01-15 23:10
 - fix small bugs that arose from merge conflicts
 - got categories to be disabled when questions are already answered
@@ -135,4 +142,4 @@ peihuaH -- 2020-01-16 01:38
 
 aliceN -- 2020-01-16 01:48
 - added formatting for the register page so it matches login
-- added formatting for the home page, the play page, and the create page 
+- added formatting for the home page, the play page, and the create page

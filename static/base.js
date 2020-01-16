@@ -38,4 +38,9 @@ var addTeams = function(){
             btn.type = "submit";
         }
 
+var disable = function(id){
+  var btn = document.getElementById(id);
+  btn.disabled = true;
+}
+
 revealAns()

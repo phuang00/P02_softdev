@@ -183,11 +183,11 @@ def create_board(user_id, board_name, categories, question_ids):
     db.commit()
     db.close()
 
-def create_team(game_id, team_name):
+def create_team(game_id, team_name, turn):
     db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
     c = db.cursor()  # facilitate db ops
 
-    query = "INSERT INTO teams(game_id, team_name, score) VALUES(\"%s\", \"%s\", 0);" % (game_id, team_name)
+    query = "INSERT INTO teams(game_id, team_name, turn, score) VALUES(\"%s\", \"%s\", \"%s\", 0);" % (game_id, team_name, turn)
     response = list(c.execute(query))
     db.commit()  # save changes
     db.close()  # close database

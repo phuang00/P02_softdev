@@ -150,11 +150,12 @@ def play():
             if 'team1' in request.args:
                 print("aahhhhh")
                 #Add teams to database / get list of teams
-                x = 1;
                 teams = []
                 game_id = db_functions.create_game(session['id'], board_id, categories)
+                db_functions.create_team(game_id, request.args.get('team1'), 1)
+                x = 2;
                 while 'team' + str(x) in request.args:
-                    db_functions.create_team(game_id, request.args.get('team' + str(x)))
+                    db_functions.create_team(game_id, request.args.get('team' + str(x)), 0)
                     teams.append(request.args.get('team' + str(x)))
                     x += 1
                 #Getting array of questions

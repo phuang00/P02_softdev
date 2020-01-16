@@ -112,7 +112,7 @@ def customize():
                 cat = "c" + str(i)
                 categories.append(request.form[cat])
                 for j in range(1, 6):
-                    question_ids.append(db_functions.create_question(request.form[cat], request.form[cat + "_q" + str(j)], request.form[cat + "_a" + str(j)]))
+                    question_ids.append(db_functions.create_question(request.form[cat], request.form[cat + "_a" + str(j)], request.form[cat + "_q" + str(j)]))
             print(categories)
             print(question_ids)
             db_functions.create_board(session['id'], request.form['board_name'], categories, question_ids)

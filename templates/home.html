@@ -9,25 +9,34 @@ Homepage
 <div class="container-fluid text-center" >
   <h1>Welcome {{ user }} to JEOPARDY!</h1>
   <br>
-  <h6>Games History</h6>
-  <ul>
+  <h4>Games History</h4>
+  <br>
+  <ul class="list-group">
     {% for item in games %}
     <form method="GET" action="/play">
-      <button class="btn btn-outline-success" type="submit" name="game_id" value={{games[item]}}>{{ item }}</button>
+      <button class="list-group-item list-group-item-action list-group-item-primary" type="submit" name="game_id" value={{games[item]}}>{{ item }}</button>
     </form>
     <br>
     {% endfor %}
   </ul>
   <br>
   <br>
-  <h6>Your Boards</h6>
-  <ul>
+  <h4>Your Boards</h4>
+  <br>
+  <ul class="list-group">
     {% for item in boards %}
     <form method="GET" action="/play">
-      <button class="btn btn-outline-success" type="submit" name="board_id" value={{boards[item]}}>{{ item }}</button>
+      <button class="list-group-item list-group-item-action list-group-item-primary" type="submit" name="board_id" value={{boards[item]}}>{{ item }}</button>
     </form>
     <br>
     {% endfor %}
   </ul>
 </div>
+<br><br><br>
+<h5>How to Play!</h5>
+<ul class="list-unstyled">
+  <li>1. Create a board by either inputting your own questions, or choosing from our selection of categories</li>
+  <li>2. Select the board to start the game. You will be prompted to input relevant team information.</li>
+  <li>3. Now you can play Jeopardy! When you answer a question, whether it is correct or incorrect, the pop up screen will allow you to deduct or add points accordingly. Your points are displayed in a scoreboard.</li>
+</ul>
 {% endblock %}

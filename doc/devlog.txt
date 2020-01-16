@@ -106,8 +106,17 @@ peihuaH -- 2020-01-15 10:21
 - have board_name show in game.html
 - have game.html display all the categories and the basic board (q & a to be added)
 
+hilaryZ -- 2020-01-15 12:30
+- added questions from several categories on OpenTrivia to the database
+- added user_id column to the board_status table
+
 peihuaH -- 2020-01-15 12:51
 - added game history to home page, allowing users to continue previous games or see results
+
+hilaryZ -- 2020-01-15 19:52
+- added code to /play so users can continue games they didn't finish from their homepage
+- wrote check_if_finished() using board_status table
+- working on passing information from questions to app.py
 
 peihuaH -- 2020-01-15 23:10
 - fix small bugs that arose from merge conflicts

@@ -151,8 +151,9 @@ def play():
                     else:
                         t += 1
             turn = db_functions.get_turn(game_id)
+            board_status = db_functions.get_board_status(game_id)
             questions = get_questions(board_id, game_id)
-            return render_template('game.html', game_id = game_id, board_name = board_name, data = questions, teams=teams, turn = turn)
+            return render_template('game.html', game_id = game_id, board_name = board_name, data = questions, teams=teams, turn = turn, board_status=board_status)
         if 'board_id' in request.args:
             board_id = request.args['board_id']
             user_id = session['id']
@@ -177,7 +178,7 @@ def play():
                 questions = get_questions(board_id, game_id)
                 #Format of questions array: category, q1, a1, q2, a2, q3, a3, q4, a4, q5, a5, ...
                 #print(questions)
-                return render_template('game.html', game_id=game_id, board_name=board_name, data=questions, teams=teams, turn = turn)
+                return render_template('game.html', game_id=game_id, board_name=board_name, data=questions, teams=teams, turn = turn, board_status=board_status)
             return render_template('play.html', board_id=request.args['board_id'])
         return redirect(url_for('board'))
     return redirect(url_for('login'))

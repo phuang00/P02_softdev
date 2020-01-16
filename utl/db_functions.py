@@ -92,11 +92,11 @@ def get_board_question_ids(board_id):
     c.execute(query)
     data = []
     for row in c.fetchall():
-        data.append(row[4])
         data.append(row[5])
         data.append(row[6])
         data.append(row[7])
         data.append(row[8])
+        data.append(row[9])
     db.commit()  # save changes
     db.close()  # close database
     return data
@@ -169,6 +169,23 @@ def create_game(user_id, board_id, categoryList):
     db.commit()
     db.close()
     return game_id
+
+def get_board_status(game_id):
+    db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
+    c = db.cursor()  # facilitate db ops
+
+    query = "SELECT * FROM board_status WHERE game_id == \"%s\";" % (game_id)
+    c.execute(query)
+    data = []
+    for row in c.fetchall():
+        data.append(row[5])
+        data.append(row[6])
+        data.append(row[7])
+        data.append(row[8])
+        data.append(row[9])
+    db.commit()  # save changes
+    db.close()  # close database
+    return data
 
 def create_board(user_id, board_name, categories, question_ids):
     db = sqlite3.connect(DB_FILE)
@@ -268,7 +285,7 @@ def mark_question_done(game_id, q_id):
     else:
         col = "q" + str(q_id % 5)
     query = "UPDATE board_status SET \"%s\"=0 WHERE game_id=\"%s\" AND row=\"%s\";" % (col,game_id,row)
-    print(query)
+    #print(query)
     c.execute(query)
     db.commit()
     db.close()

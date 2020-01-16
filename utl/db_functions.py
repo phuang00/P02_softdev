@@ -259,6 +259,20 @@ def add_score(id,team,score_added):
     db.commit()
     db.close()
 
+def mark_question_done(game_id, q_id):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    row = (q_id - 1) // 5
+    if q_id % 5 == 0:
+        col = "q5"
+    else:
+        col = "q" + str(q_id % 5)
+    query = "UPDATE board_status SET \"%s\"=0 WHERE game_id=\"%s\" AND row=\"%s\";" % (col,game_id,row)
+    print(query)
+    c.execute(query)
+    db.commit()
+    db.close()
+
 def check_if_finished(game_id):
     db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
     c = db.cursor()  # facilitate db ops

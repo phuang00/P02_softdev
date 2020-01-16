@@ -139,6 +139,7 @@ def play():
             board_id = db_functions.get_board_id(game_id)
             board_name = db_functions.get_board_name(session['id'], board_id)
             if 'points' in request.args:
+                db_functions.mark_question_done(game_id, int(request.args.get('q_id')))
                 turn = db_functions.get_turn(game_id)
                 db_functions.add_score(game_id, turn, request.args.get('points'))
                 t = 0;

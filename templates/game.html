@@ -6,6 +6,7 @@ Playing: {{board_name}}
 
 {% block body %}
 <input type="hidden" name="game_id" value="{{game_id}}">
+{% if not finished %}
 <div class="text-center">
   <h1>Board: {{board_name}}</h1>
   <h1>Playing: {{turn}}</h1>
@@ -66,6 +67,7 @@ Playing: {{board_name}}
     {% endfor %}
   </div>
 </div>
+{% endif %}
 <br><br>
 <div class="container">
   <center><h1>Scoreboard</h1></center>

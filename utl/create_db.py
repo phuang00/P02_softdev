@@ -15,10 +15,10 @@ def create():
     # test SQL stmt in sqlite3 shell, save as string
     create_table_users = "CREATE TABLE IF NOT EXISTS users(user_id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT);"
     insert_user = "INSERT OR IGNORE INTO users(user_id, username, password) VALUES( 1, \"admin\", \"peterstuy\");"
-    create_table_board = "CREATE TABLE IF NOT EXISTS board(board_id INTEGER, user_id INTEGER, board_name TEXT, category TEXT, q1 INTEGER, q2 INTEGER, q3 INTEGER, q4 INTEGER, q5 INTEGER);"
+    create_table_board = "CREATE TABLE IF NOT EXISTS board(board_id INTEGER, user_id INTEGER, board_name TEXT, row INTEGER, category TEXT, q1 INTEGER, q2 INTEGER, q3 INTEGER, q4 INTEGER, q5 INTEGER);"
     insert_dummy = "INSERT OR IGNORE INTO board(board_id) VALUES(0)"
     create_table_teams = "CREATE TABLE IF NOT EXISTS teams(game_id INTEGER, team_name TEXT, turn INTEGER, score INTEGER);"
-    create_table_board_status = "CREATE TABLE IF NOT EXISTS board_status(user_id INTEGER, board_id INTEGER, game_id INTEGER, category TEXT, q1 INTEGER, q2 INTEGER, q3 INTEGER, q4 INTEGER, q5 INTEGER);"
+    create_table_board_status = "CREATE TABLE IF NOT EXISTS board_status(user_id INTEGER, board_id INTEGER, game_id INTEGER, row INTEGER, category TEXT, q1 INTEGER, q2 INTEGER, q3 INTEGER, q4 INTEGER, q5 INTEGER);"
     create_table_questions = "CREATE TABLE IF NOT EXISTS questions(question_id INTEGER PRIMARY KEY AUTOINCREMENT, category TEXT, question TEXT, answer TEXT);"
 
     c.execute(create_table_users)

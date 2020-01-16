@@ -92,11 +92,11 @@ def get_board_question_ids(board_id):
     c.execute(query)
     data = []
     for row in c.fetchall():
-        data.append(row[4])
         data.append(row[5])
         data.append(row[6])
         data.append(row[7])
         data.append(row[8])
+        data.append(row[9])
     db.commit()  # save changes
     db.close()  # close database
     return data
@@ -164,11 +164,28 @@ def create_game(user_id, board_id, categoryList):
     i = 0
     while i < 5:
         #query = "INSERT INTO board_status(board_id, category, q1, q2 ,q3 ,q4 ,q5) VALUES(\"%s\", \"%s\", 1, 1, 1, 1, 1)" % (board_id, categoryList[i])
-        c.execute("INSERT INTO board_status(user_id, board_id, game_id, category, q1, q2 ,q3 ,q4 ,q5) VALUES(?, ?, ?, ?, 1, 1, 1, 1, 1)", (user_id, board_id, game_id, categoryList[i]))
+        c.execute("INSERT INTO board_status(user_id, board_id, game_id, row, category, q1, q2 ,q3 ,q4 ,q5) VALUES(?, ?, ?, ?, ?, 1, 1, 1, 1, 1)", (user_id, board_id, game_id, i, categoryList[i]))
         i += 1
     db.commit()
     db.close()
     return game_id
+
+def get_board_status(game_id):
+    db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
+    c = db.cursor()  # facilitate db ops
+
+    query = "SELECT * FROM board_status WHERE game_id == \"%s\";" % (game_id)
+    c.execute(query)
+    data = []
+    for row in c.fetchall():
+        data.append(row[5])
+        data.append(row[6])
+        data.append(row[7])
+        data.append(row[8])
+        data.append(row[9])
+    db.commit()  # save changes
+    db.close()  # close database
+    return data
 
 def create_board(user_id, board_name, categories, question_ids):
     db = sqlite3.connect(DB_FILE)
@@ -176,8 +193,8 @@ def create_board(user_id, board_name, categories, question_ids):
     i = 0
     board_id = get_highest_num("board", "board_id") + 1
     while i < 5:
-        c.execute("INSERT INTO board(board_id, user_id, board_name, category, q1, q2, q3, q4, q5) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);",
-                  (board_id, user_id, board_name, categories[i], question_ids[i * 5], question_ids[i * 5 + 1],
+        c.execute("INSERT INTO board(board_id, user_id, board_name, row, category, q1, q2, q3, q4, q5) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
+                  (board_id, user_id, board_name, i, categories[i], question_ids[i * 5], question_ids[i * 5 + 1],
                    question_ids[(i * 5 + 2)], question_ids[i * 5 + 3], question_ids[i * 5 + 4],))
         i = i + 1
     db.commit()
@@ -256,6 +273,20 @@ def add_score(id,team,score_added):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     c.execute("UPDATE teams SET score=score+ ? WHERE game_id=? AND team_name=?", (score_added,id,team,))
+    db.commit()
+    db.close()
+
+def mark_question_done(game_id, q_id):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    row = (q_id - 1) // 5
+    if q_id % 5 == 0:
+        col = "q5"
+    else:
+        col = "q" + str(q_id % 5)
+    query = "UPDATE board_status SET \"%s\"=0 WHERE game_id=\"%s\" AND row=\"%s\";" % (col,game_id,row)
+    #print(query)
+    c.execute(query)
     db.commit()
     db.close()
 

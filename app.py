@@ -171,6 +171,7 @@ def play():
                 teams = []
                 game_id = db_functions.create_game(session['id'], board_id, categories)
                 db_functions.create_team(game_id, request.args.get('team1'), 1)
+                teams.append(request.args['team1'])
                 x = 2;
                 while 'team' + str(x) in request.args:
                     db_functions.create_team(game_id, request.args.get('team' + str(x)), 0)

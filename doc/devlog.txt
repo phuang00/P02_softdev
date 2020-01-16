@@ -118,3 +118,8 @@ peihuaH -- 2020-01-16 00:49
 - got the leadership board to display correctly
 - found bug when logging in as another user: fixed it so that the other user can create a game
 - however, still bug getting the questions and answers needed for the certain board
+
+peihuaH -- 2020-01-16 01:38
+- Fixed bug that creates a null account when clicking register
+- fixed bug where the first person to play doesnt get added to leadership board
+- added dummy db file

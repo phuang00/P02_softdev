@@ -5,7 +5,16 @@ Creating Board...
 {% endblock %}
 
 {% block body %}
-<h1>Create a Board</h1>
-<p><a href='/create'>Generate a Random Board</a></p>
-<p><a href='/customize'>Write Your Own Board</a></p>
+<br>
+<div class="container-fluid text-center">
+  <h1>Create a Board</h1>
+  <br>
+  <form action='/create'>
+    <button class="btn btn-outline-primary btn-block" type="submit">Generate a Random Board</button>
+  </form>  
+  <br>
+  <form action='/customize'>
+    <button class="btn btn-outline-primary btn-block" type="submit">Write Your Own Board</button>
+  </form>
+</div>
 {% endblock %}

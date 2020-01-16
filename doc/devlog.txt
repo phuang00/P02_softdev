@@ -55,6 +55,10 @@ peihuaH -- 2020-01-09 09:24
 - made navbar dark
 - remove unused import in create_db.py
 
+jacobO -- 2020-01-09 09:25
+- Added function to cache flag questions
+- Added function to create board status
+
 aliceN -- 2020-01-09 22:02
 - added a working poke api! now all the api's will generate 25 random questions when calls to the functions are made
 - to do for api: for the open trivia api, must make it so it generates new questions everytime it's called
@@ -67,6 +71,12 @@ hilaryZ -- 2020-01-10 09:27
 - fixed customize so that the user's questions are added to the questions table in the database
 - id of the question is returned and added to array
 - will work on adding all 25 questions and creating board
+
+jacobO -- 2020-01-10 09:30
+- Added function to add Rick and Morty questions
+- Added function to add Pokemon questions
+- Added function to add general knowledge questions
+- Started writing the function to check if a question already exists
 
 peihuaH -- 2020-01-12 02:17
 - added board_name column to board table in database
@@ -91,6 +101,9 @@ hilaryZ -- 2020-01-14 09:25
 - created buttons for a user's boards to take them to /play
 - wrote functions to get a board id and categories, working on creating the board status
 
+jacobO -- 2020-01-14 09:25
+- Made it so that board ids are the same for a board, but the first one doesn't work
+
 peihuaH -- 2020-01-14 19:46
 - setup play.html so user can enter the number of teams and then team names accordingly
 - fixed issue where board_id was different between rows of the same board
@@ -100,6 +113,12 @@ hilaryZ -- 2020-01-15 01:39
 - added game_id to the board_status table
 - added teams that the user creates to the database
 - wrote functions to get the array of questions and answers for the jeopardy board
+
+jacobO -- 2020-01-15 09:25
+- Fixed a bug with board ids
+- Added add_score
+- Made add_score cleaner
+- Started working on get_games
 
 peihuaH -- 2020-01-15 10:21
 - keep board_id stored with the use of hidden inputs

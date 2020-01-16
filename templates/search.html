@@ -5,12 +5,14 @@ Search
 {% endblock %}
 
 {% block body %}
-<h1>Searches for: {{ search }}</h1>
-<ul>
-  {% for row in results %}
-    <form action="/play" method="GET">
-      <button type="submit" name="board_id" value={{results[row]}}>{{row}}</button>
-    </form>
-  {% endfor %}
-</ul>
+<div class="text-center">
+  <h1>Searches for: {{ search }}</h1>
+    {% for row in results %}
+      <form action="/play" method="GET">
+        <button class="btn btn-success" type="submit" name="board_id" value={{results[row]}}>{{row}}</button>
+      </form>
+      <br>
+    {% endfor %}
+
+</div>
 {% endblock %}

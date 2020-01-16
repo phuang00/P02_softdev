@@ -24,7 +24,7 @@ def create():
     c.execute(create_table_users)
     c.execute(insert_user)
     c.execute(create_table_board)
-    c.execute(insert_dummy)
+    #c.execute(insert_dummy)
     c.execute(create_table_teams)
     c.execute(create_table_board_status)
     c.execute(create_table_questions)

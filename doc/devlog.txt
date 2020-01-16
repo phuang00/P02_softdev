@@ -84,12 +84,37 @@ hilaryZ -- 2020-01-14 00:05
 - the create function now picks a random five questions for each category picked by the user
 - board is created, and user is redirected to the homepage
 
+peihuaH -- 2020-01-14 09:13
+- renamed api cards to match final deliverables
+
 hilaryZ -- 2020-01-14 09:25
 - created buttons for a user's boards to take them to /play
 - wrote functions to get a board id and categories, working on creating the board status
+
+peihuaH -- 2020-01-14 19:46
+- setup play.html so user can enter the number of teams and then team names accordingly
+- fixed issue where board_id was different between rows of the same board
 
 hilaryZ -- 2020-01-15 01:39
 - added game to the board status database table
 - added game_id to the board_status table
 - added teams that the user creates to the database
 - wrote functions to get the array of questions and answers for the jeopardy board
+
+peihuaH -- 2020-01-15 10:21
+- keep board_id stored with the use of hidden inputs
+- have board_name show in game.html
+- have game.html display all the categories and the basic board (q & a to be added)
+
+peihuaH -- 2020-01-15 12:51
+- added game history to home page, allowing users to continue previous games or see results
+
+peihuaH -- 2020-01-15 23:10
+- fix small bugs that arose from merge conflicts
+- got categories to be disabled when questions are already answered
+
+peihuaH -- 2020-01-16 00:49
+- updated some bootstrap styling to make it more colorful
+- got the leadership board to display correctly
+- found bug when logging in as another user: fixed it so that the other user can create a game
+- however, still bug getting the questions and answers needed for the certain board

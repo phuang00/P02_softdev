@@ -234,6 +234,26 @@ def add_score(id,team,score_added):
     db.commit()
     db.close()
 
+def check_if_finished(game_id):
+    db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
+    c = db.cursor()  # facilitate db ops
+
+    query = "SELECT q1, q2, q3, q4, q5 FROM board_status WHERE game_id == \"%s\";" % (game_id)
+    c.execute(query)
+    data = []
+    for row in c.fetchall():
+        data.append(row[0])
+        data.append(row[1])
+        data.append(row[2])
+        data.append(row[3])
+        data.append(row[4])
+    db.commit()  # save changes
+    db.close()  # close database
+    for x in data:
+        if x == 1:
+            return False
+    return True
+
 def get_games(user_id):
     games = {}
     db = sqlite3.connect(DB_FILE)

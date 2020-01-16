@@ -20,7 +20,7 @@ Our project allows users to create their own Jeopardy boards or use randomly gen
 1. Create and run a virtual environment with the following commands:
    ```
    python3 -m venv <name of virtual environment>    # creates a virtual environment named <name of virtual environment>
-   .<name of virtual environment>/bin/activate      # activates the virtual environment
+   . <name of virtual environment>/bin/activate      # activates the virtual environment
    ```
 2. Clone and change into our repository:
    ```

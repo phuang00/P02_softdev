@@ -207,6 +207,29 @@ def get_teams(game_id):
     db.close()  # close database
     return data
 
+def get_turn(game_id):
+    db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
+    c = db.cursor()  # facilitate db ops
+
+    query = "SELECT team_name FROM teams WHERE game_id == \"%s\" AND turn == 1;" % (game_id)
+    c.execute(query)
+    response = c.fetchone()[0]
+    db.commit()  # save changes
+    db.close()  # close database
+    return response
+
+def update_turn(game_id, old_team, new_team):
+    db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
+    c = db.cursor()  # facilitate db ops
+
+    query = "UPDATE teams SET turn = 0 WHERE game_id == \"%s\" AND team_name == \"%s\";" % (game_id, old_team)
+    c.execute(query)
+    query = "UPDATE teams SET turn = 1 WHERE game_id == \"%s\" AND team_name == \"%s\";" % (game_id, new_team)
+    c.execute(query)
+    db.commit()  # save changes
+    db.close()  # close database
+    return 
+
 def get_boards(username):
     history = {}
     db = sqlite3.connect(DB_FILE)

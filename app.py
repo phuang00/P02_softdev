@@ -127,9 +127,9 @@ def play():
             teams = db_functions.get_teams(game_id)
             board_id = db_functions.get_board_id(game_id)
             board_name = db_functions.get_board_name(session['id'], board_id)
-            #print(db_functions.check_if_finished(game_id))
             if 'points' in request.args:
                 print('points')
+            turn = db_functions.get_turn(game_id)
             categories = db_functions.get_board_categories(session['id'], board_id)
             question_ids = db_functions.get_board_question_ids(board_id)
             questions = db_functions.get_board_questions(question_ids)
@@ -138,7 +138,7 @@ def play():
             questions.insert(22, categories[2])
             questions.insert(33, categories[3])
             questions.insert(44, categories[4])
-            return render_template('game.html', game_id = game_id, board_name = board_name, data = questions, teams=teams)
+            return render_template('game.html', game_id = game_id, board_name = board_name, data = questions, teams=teams, turn = turn)
         if 'board_id' in request.args:
             board_id = request.args['board_id']
             user_id = session['id']
@@ -158,6 +158,7 @@ def play():
                     db_functions.create_team(game_id, request.args.get('team' + str(x)), 0)
                     teams.append(request.args.get('team' + str(x)))
                     x += 1
+                turn = db_functions.get_turn(game_id)
                 #Getting array of questions
                 categories = db_functions.get_board_categories(session['id'], session['board_id'])
                 question_ids = db_functions.get_board_question_ids(session['board_id'])
@@ -169,7 +170,7 @@ def play():
                 questions.insert(44, categories[4])
                 #Format of questions array: category, q1, a1, q2, a2, q3, a3, q4, a4, q5, a5, ...
                 #print(questions)
-                return render_template('game.html', game_id=game_id, board_name=board_name, data=questions, teams=teams)
+                return render_template('game.html', game_id=game_id, board_name=board_name, data=questions, teams=teams, turn = turn)
             return render_template('play.html', board_id=request.args['board_id'])
         return redirect(url_for('board'))
     return redirect(url_for('login'))

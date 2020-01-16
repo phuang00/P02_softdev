@@ -222,13 +222,15 @@ def update_turn(game_id, old_team, new_team):
     db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
     c = db.cursor()  # facilitate db ops
 
-    query = "UPDATE teams SET turn = 0 WHERE game_id == \"%s\" AND team_name == \"%s\";" % (game_id, old_team)
-    c.execute(query)
-    query = "UPDATE teams SET turn = 1 WHERE game_id == \"%s\" AND team_name == \"%s\";" % (game_id, new_team)
-    c.execute(query)
+    #query = "UPDATE teams SET turn = 0 WHERE game_id == \"%s\" AND team_name == \"%s\";" % (game_id, old_team)
+    #c.execute(query)
+    #query = "UPDATE teams SET turn = 1 WHERE game_id == \"%s\" AND team_name == \"%s\";" % (game_id, new_team)
+    #c.execute(query)
+    c.execute("UPDATE teams SET turn=0 WHERE game_id=? AND team_name=?", (game_id, old_team))
+    c.execute("UPDATE teams SET turn=1 WHERE game_id=? AND team_name=?", (game_id, new_team))
     db.commit()  # save changes
     db.close()  # close database
-    return 
+    return
 
 def get_boards(username):
     history = {}

@@ -139,7 +139,16 @@ def play():
             board_id = db_functions.get_board_id(game_id)
             board_name = db_functions.get_board_name(session['id'], board_id)
             if 'points' in request.args:
-                print('points')
+                turn = db_functions.get_turn(game_id)
+                db_functions.add_score(game_id, turn, request.args.get('points'))
+                t = 0;
+                print(t)
+                while t < len(teams):
+                    if turn == teams[t]:
+                        db_functions.update_turn(game_id, turn, teams[(t+1) % len(teams)])
+                        t = len(teams)
+                    else:
+                        t += 1
             turn = db_functions.get_turn(game_id)
             questions = get_questions(board_id, game_id)
             return render_template('game.html', game_id = game_id, board_name = board_name, data = questions, teams=teams, turn = turn)

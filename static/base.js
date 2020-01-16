@@ -38,9 +38,4 @@ var addTeams = function(){
             btn.type = "submit";
         }
 
-var collapse = function(){
-  var ans = document.getElementById("answer");
-  ans.setAttribute("aria-expanded", "false");
-}
-
 revealAns()

@@ -175,6 +175,7 @@ def play():
                     x += 1
                 turn = db_functions.get_turn(game_id)
                 #Getting array of questions
+                board_status = db_functions.get_board_status(game_id)
                 questions = get_questions(board_id, game_id)
                 #Format of questions array: category, q1, a1, q2, a2, q3, a3, q4, a4, q5, a5, ...
                 #print(questions)

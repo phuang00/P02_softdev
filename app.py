@@ -119,6 +119,17 @@ def customize():
         return render_template('customize.html')
     return redirect(url_for('login'))
 
+def get_questions(board_id, game_id):
+    categories = db_functions.get_board_categories(session['id'], board_id)
+    question_ids = db_functions.get_board_question_ids(board_id)
+    questions = db_functions.get_board_questions(question_ids)
+    questions.insert(0, categories[0])
+    questions.insert(11, categories[1])
+    questions.insert(22, categories[2])
+    questions.insert(33, categories[3])
+    questions.insert(44, categories[4])
+    return questions
+
 @app.route('/play')
 def play():
     if 'user' in session:
@@ -130,14 +141,7 @@ def play():
             if 'points' in request.args:
                 print('points')
             turn = db_functions.get_turn(game_id)
-            categories = db_functions.get_board_categories(session['id'], board_id)
-            question_ids = db_functions.get_board_question_ids(board_id)
-            questions = db_functions.get_board_questions(question_ids)
-            questions.insert(0, categories[0])
-            questions.insert(11, categories[1])
-            questions.insert(22, categories[2])
-            questions.insert(33, categories[3])
-            questions.insert(44, categories[4])
+            questions = get_questions(board_id, game_id)
             return render_template('game.html', game_id = game_id, board_name = board_name, data = questions, teams=teams, turn = turn)
         if 'board_id' in request.args:
             board_id = request.args['board_id']
@@ -160,14 +164,7 @@ def play():
                     x += 1
                 turn = db_functions.get_turn(game_id)
                 #Getting array of questions
-                categories = db_functions.get_board_categories(session['id'], session['board_id'])
-                question_ids = db_functions.get_board_question_ids(session['board_id'])
-                questions = db_functions.get_board_questions(question_ids)
-                questions.insert(0, categories[0])
-                questions.insert(11, categories[1])
-                questions.insert(22, categories[2])
-                questions.insert(33, categories[3])
-                questions.insert(44, categories[4])
+                questions = get_questions(board_id, game_id)
                 #Format of questions array: category, q1, a1, q2, a2, q3, a3, q4, a4, q5, a5, ...
                 #print(questions)
                 return render_template('game.html', game_id=game_id, board_name=board_name, data=questions, teams=teams, turn = turn)

@@ -18,9 +18,9 @@ Playing: {{board_name}}
         <br>
         {% for j in range(1,6) %}
           {% if board_status[i * 5 + j - 1] == 1 %}
-          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#{{data[i * 11]}}{{j*100}}">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{data[i * 11]}}{{j*100}}">
           {% else %}
-          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#{{data[i * 11]}}{{j*100}}" disabled>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{data[i * 11]}}{{j*100}}" disabled>
           {% endif %}
             {{j * 100}}
           </button>

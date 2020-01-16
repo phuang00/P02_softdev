@@ -13,8 +13,9 @@ Homepage
   <ul>
     {% for item in games %}
     <form method="GET" action="/play">
-      <button type="submit" name="game_id" value={{games[item]}}>{{ item }}</button>
+      <button class="btn btn-outline-success" type="submit" name="game_id" value={{games[item]}}>{{ item }}</button>
     </form>
+    <br>
     {% endfor %}
   </ul>
   <br>
@@ -23,8 +24,9 @@ Homepage
   <ul>
     {% for item in boards %}
     <form method="GET" action="/play">
-      <button type="submit" name="board_id" value={{boards[item]}}>{{ item }}</button>
+      <button class="btn btn-outline-success" type="submit" name="board_id" value={{boards[item]}}>{{ item }}</button>
     </form>
+    <br>
     {% endfor %}
   </ul>
 </div>

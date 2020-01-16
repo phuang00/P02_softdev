@@ -70,20 +70,20 @@ Playing: {{board_name}}
   <table class="table table-bordered">
     <thead>
       <tr>
-	<th scope="col">Team Name</th>
-	<th scope="col">Score</th>
+      	<th scope="col">Team Name</th>
+      	<th scope="col">Score</th>
       </tr>
     </thead>
-    {% for team in teams %}
-    <tbody>
-      <tr>
-	<th scope="row">{{ team }}</th>
-	&nbsp; 
-	<td>
-	  {{ score }}
-	</td>
-      </tr>
-    </tbody>
+    {% for i in range(teams|length) %}
+      <tbody>
+        <tr>
+	         <th scope="row">{{ teams[i] }}</th>
+	          &nbsp;
+	           <td>
+	              {{ score[i] }}
+	           </td>
+        </tr>
+      </tbody>
     {% endfor %}
   </table>
 </div>

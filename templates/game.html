@@ -40,7 +40,18 @@ Playing: {{board_name}}
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" onclick="collapse()" data-dismiss="modal">Close</button>
+                  <form method="GET" action="/play">
+                    <input type="hidden" name="game_id" value="{{game_id}}">
+                    <input type="hidden" name="points" value="{{j * 100}}">
+                    <input type="hidden" name="q_id" value="{{i * 5 + j}}">
+                    <button type="submit" name="submit" class="btn btn-secondary">Add Points</button>
+                  </form>
+                  <form method="GET" action="/play">
+                    <input type="hidden" name="game_id" value="{{game_id}}">
+                    <input type="hidden" name="points" value="{{j * -100}}">
+                    <input type="hidden" name="q_id" value="{{i * 5 + j}}">
+                    <button type="submit" name="submit" class="btn btn-secondary">Remove Points</button>
+                  </form>
                 </div>
               </div>
             </div>
@@ -65,7 +76,7 @@ Playing: {{board_name}}
       <tr>
 	<th scope="row">{{ team }}</th>
 	<td id="row">
-	  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;                   	  
+	  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 	  <form>
 	    Score
 	    <input type="number" step="100" value="0" min="0" max="2500">

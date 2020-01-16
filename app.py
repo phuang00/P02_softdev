@@ -128,6 +128,8 @@ def play():
             board_id = db_functions.get_board_id(game_id)
             board_name = db_functions.get_board_name(session['id'], board_id)
             #print(db_functions.check_if_finished(game_id))
+            if 'points' in request.args:
+                print('points')
             categories = db_functions.get_board_categories(session['id'], board_id)
             question_ids = db_functions.get_board_question_ids(board_id)
             questions = db_functions.get_board_questions(question_ids)

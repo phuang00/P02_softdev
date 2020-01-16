@@ -121,7 +121,7 @@ def customize():
     return redirect(url_for('login'))
 
 def get_questions(board_id, game_id):
-    categories = db_functions.get_board_categories(session['id'], board_id)
+    categories = db_functions.get_board_categories(board_id)
     question_ids = db_functions.get_board_question_ids(board_id)
     questions = db_functions.get_board_questions(question_ids)
     questions.insert(0, categories[0])
@@ -162,7 +162,7 @@ def play():
             user_id = session['id']
             board_name = db_functions.get_board_name(board_id)
             session['board_id'] = board_id
-            categories = db_functions.get_board_categories(user_id, board_id)
+            categories = db_functions.get_board_categories(board_id)
             #print(board_id)
             #print(categories)
             if 'team1' in request.args:

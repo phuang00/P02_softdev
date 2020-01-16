@@ -71,11 +71,11 @@ def get_board_id(game_id):
     db.close()  # close database
     return response
 
-def get_board_categories(user_id, board_id):
+def get_board_categories(board_id):
     db = sqlite3.connect(DB_FILE)  # open if file exists, otherwise create
     c = db.cursor()  # facilitate db ops
 
-    query = "SELECT category FROM board WHERE user_id == \"%s\" AND board_id == \"%s\";" % (user_id, board_id)
+    query = "SELECT category FROM board WHERE board_id == \"%s\";" % (board_id)
     c.execute(query)
     data = []
     for row in c.fetchall():

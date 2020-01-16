@@ -164,7 +164,7 @@ def create_game(user_id, board_id, categoryList):
     i = 0
     while i < 5:
         #query = "INSERT INTO board_status(board_id, category, q1, q2 ,q3 ,q4 ,q5) VALUES(\"%s\", \"%s\", 1, 1, 1, 1, 1)" % (board_id, categoryList[i])
-        c.execute("INSERT INTO board_status(user_id, board_id, game_id, category, q1, q2 ,q3 ,q4 ,q5) VALUES(?, ?, ?, ?, 1, 1, 1, 1, 1)", (user_id, board_id, game_id, categoryList[i]))
+        c.execute("INSERT INTO board_status(user_id, board_id, game_id, row, category, q1, q2 ,q3 ,q4 ,q5) VALUES(?, ?, ?, ?, ?, 1, 1, 1, 1, 1)", (user_id, board_id, game_id, i, categoryList[i]))
         i += 1
     db.commit()
     db.close()
@@ -176,8 +176,8 @@ def create_board(user_id, board_name, categories, question_ids):
     i = 0
     board_id = get_highest_num("board", "board_id") + 1
     while i < 5:
-        c.execute("INSERT INTO board(board_id, user_id, board_name, category, q1, q2, q3, q4, q5) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);",
-                  (board_id, user_id, board_name, categories[i], question_ids[i * 5], question_ids[i * 5 + 1],
+        c.execute("INSERT INTO board(board_id, user_id, board_name, row, category, q1, q2, q3, q4, q5) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
+                  (board_id, user_id, board_name, i, categories[i], question_ids[i * 5], question_ids[i * 5 + 1],
                    question_ids[(i * 5 + 2)], question_ids[i * 5 + 3], question_ids[i * 5 + 4],))
         i = i + 1
     db.commit()

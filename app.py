@@ -94,7 +94,8 @@ def create():
                 elif c == 'animals':
                     for x in range(5):
                         question_ids.append(random.randrange(151, 170, 1))
-            #print(question_ids)
+            print(question_ids)
+            print(categories)
             db_functions.create_board(session['id'], request.args.get('board_name'), categories, question_ids)
             return redirect(url_for('home'))
         return render_template('create.html')
@@ -137,7 +138,7 @@ def play():
             game_id = request.args.get('game_id')
             teams = db_functions.get_teams(game_id)
             board_id = db_functions.get_board_id(game_id)
-            board_name = db_functions.get_board_name(session['id'], board_id)
+            board_name = db_functions.get_board_name(board_id)
             if 'points' in request.args:
                 db_functions.mark_question_done(game_id, int(request.args.get('q_id')))
                 turn = db_functions.get_turn(game_id)
@@ -159,7 +160,7 @@ def play():
         if 'board_id' in request.args:
             board_id = request.args['board_id']
             user_id = session['id']
-            board_name = db_functions.get_board_name(user_id, board_id)
+            board_name = db_functions.get_board_name(board_id)
             session['board_id'] = board_id
             categories = db_functions.get_board_categories(user_id, board_id)
             #print(board_id)

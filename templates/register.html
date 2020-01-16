@@ -8,15 +8,20 @@ Register
 {% endblock %}
 
 {% block body %}
-<h1>Register</h1>
-<form method="GET" action="/register">
-  <label>Choose your username</label>
-  <input type="text" name="username"> <br> <br>
-  <label>Choose your password</label>
-  <input type="text" name="password"><br> <br>
-  <input type="submit">
-</form>
-<form action = "/login">
-    <input type = "submit" value = "Return to Login">
-</form>
+<div class="container py-3 my-3 border rounded" id="font">
+  <center><h1>Register</h1><br></center>
+  <form method="GET" action="/register">
+    <label>Choose your username</label>
+    <input class="form-control" type="text" name="username" placeholder="enter username here"> <br> <br>
+    <label>Choose your password</label>
+    <input class="form-control" type="text" name="password" placeholder="enter password here"><br> <br>
+    <button type="submit" name = "submit" class="btn btn-success btn-block">Register Your Account</button>
+    
+  </form>
+  <br><br>
+  <form action = "/login">
+    <button type="submit" class="btn btn-info btn-block">Return To Login</button>
+  </form>
+</div>
+
 {% endblock %}

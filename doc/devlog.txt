@@ -143,3 +143,11 @@ peihuaH -- 2020-01-16 01:38
 aliceN -- 2020-01-16 01:48
 - added formatting for the register page so it matches login
 - added formatting for the home page, the play page, and the create page
+
+peihuaH -- 2020-01-16 01:59
+- Updated design doc:
+  - Update description since we are not using + or - symbols to add and subtract points
+  - Updated database table to confirm to the actual database and added in example values
+  - Updated sitemap to reflect how the site actually goes
+  - Updated frontend to include all the html files used and what they do
+  - Updated backend to include all the functions in app.py and its purpose

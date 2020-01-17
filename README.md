@@ -11,12 +11,14 @@ Our project allows users to create their own Jeopardy boards or use randomly gen
 
 ## APIs Used:
   (no keys required!!!)
-* [Open Trivia](https://docs.google.com/document/d/1yp2nicOExDYlrEfdvqspD17Kz5c-xMSWHudfmNjJgQ4/edit)
-* [PokeAPI](https://docs.google.com/document/d/1hMbL36d5qqFLfufHOqUMWwraWFudfJdekqp6urex0KU/edit)
-* [REST Countries](https://docs.google.com/document/d/1C-umxnBAIUzQI9kLDaXG4-YbFsiOwwRTJ5c-DXAHTRM/edit)
-* [Rick and Morty](https://docs.google.com/document/d/1oK0klhp__LHP9kxb3D70cbbI46i1mMnmDMI4y1XS3B4/edit)
+* [Open Trivia](https://docs.google.com/document/d/1yp2nicOExDYlrEfdvqspD17Kz5c-xMSWHudfmNjJgQ4/edit) - used to provide questions for the randomly generated boards
+* [PokeAPI](https://docs.google.com/document/d/1hMbL36d5qqFLfufHOqUMWwraWFudfJdekqp6urex0KU/edit) - used to get country flags and names for randomly generated questions
+* [REST Countries](https://docs.google.com/document/d/1C-umxnBAIUzQI9kLDaXG4-YbFsiOwwRTJ5c-DXAHTRM/edit) - used to get character images and names for randomly generated questions
+* [Rick and Morty](https://docs.google.com/document/d/1oK0klhp__LHP9kxb3D70cbbI46i1mMnmDMI4y1XS3B4/edit) - used to get Pokemon images and names for randomly generated questions
 
-### How to run this project
+## [video demo here](https://youtu.be/5VxKgUxmYbw)
+
+## How to run this project
 1. Create and run a virtual environment with the following commands:
    ```
    python3 -m venv <name of virtual environment>    # creates a virtual environment named <name of virtual environment>
